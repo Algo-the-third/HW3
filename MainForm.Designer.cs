@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.cityChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnCalculate = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.cityChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCities)).BeginInit();
             this.SuspendLayout();
             // 
-            // cityChart
+            // chartCities
             // 
-            chartArea2.Name = "ChartArea1";
-            this.cityChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.cityChart.Legends.Add(legend2);
-            this.cityChart.Location = new System.Drawing.Point(53, 25);
-            this.cityChart.Name = "cityChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.cityChart.Series.Add(series2);
-            this.cityChart.Size = new System.Drawing.Size(799, 368);
-            this.cityChart.TabIndex = 0;
-            this.cityChart.Text = "chart1";
+            chartArea1.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartCities.Legends.Add(legend1);
+            this.chartCities.Location = new System.Drawing.Point(53, 25);
+            this.chartCities.Name = "chartCities";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartCities.Series.Add(series1);
+            this.chartCities.Size = new System.Drawing.Size(799, 368);
+            this.chartCities.TabIndex = 0;
+            this.chartCities.Text = "chartCities";
             // 
             // btnCalculate
             // 
@@ -68,17 +68,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 646);
             this.Controls.Add(this.btnCalculate);
-            this.Controls.Add(this.cityChart);
+            this.Controls.Add(this.chartCities);
             this.Name = "MainForm";
             this.Text = "TCP - Winterterm 2014/15 - Felix Griewald, Sascha Feldmann, Marco Seidler";
-            ((System.ComponentModel.ISupportInitialize)(this.cityChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCities)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart cityChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartCities;
         private System.Windows.Forms.Button btnCalculate;
     }
 }
