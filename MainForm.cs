@@ -15,6 +15,22 @@ namespace TSP
         public MainForm()
         {
             InitializeComponent();
+            Load += new EventHandler(MainForm_Load);
+            
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            new FileLoader().loadPostions();
+        }
+
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            foreach (City city in CityPositions.getInstance().getCities())
+            {
+                Console.WriteLine(city.getNode());
+            }
         }
     }
 }

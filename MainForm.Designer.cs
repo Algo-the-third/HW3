@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.cityChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnCalculate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cityChart)).BeginInit();
@@ -38,16 +38,16 @@
             // 
             // cityChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.cityChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.cityChart.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.cityChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.cityChart.Legends.Add(legend2);
             this.cityChart.Location = new System.Drawing.Point(53, 25);
             this.cityChart.Name = "cityChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.cityChart.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.cityChart.Series.Add(series2);
             this.cityChart.Size = new System.Drawing.Size(799, 368);
             this.cityChart.TabIndex = 0;
             this.cityChart.Text = "chart1";
@@ -60,6 +60,7 @@
             this.btnCalculate.TabIndex = 1;
             this.btnCalculate.Text = "Calculate";
             this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // MainForm
             // 
