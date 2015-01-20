@@ -8,7 +8,7 @@ namespace TSP
 {
     class CityPositions
     {
-        private static volatile CityPositions cityPositions;
+        private static CityPositions cityPositions;
         private List<City> route;
 
         private List<City> cities;
@@ -50,6 +50,16 @@ namespace TSP
         public void removeCityFromRoute(City city)
         {
             route.Remove(city);
+        }
+
+        public int getRouteCount()
+        {
+            return route.Count();
+        }
+
+        public City getRouteNodeAt(int positon)
+        {
+            return route[positon];
         }
 
     }

@@ -28,33 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnCalculate = new System.Windows.Forms.Button();
+            this.checkedListBox = new System.Windows.Forms.CheckedListBox();
+            this.btnSelectAll = new System.Windows.Forms.Button();
+            this.btnSelectNone = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chartCities)).BeginInit();
             this.SuspendLayout();
             // 
             // chartCities
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartCities.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartCities.Legends.Add(legend2);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartCities.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartCities.Series.Add(series2);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(53, 399);
+            this.btnCalculate.Location = new System.Drawing.Point(728, 491);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(125, 32);
             this.btnCalculate.TabIndex = 1;
@@ -62,11 +65,40 @@
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
+            // checkedListBox
+            // 
+            this.checkedListBox.FormattingEnabled = true;
+            this.checkedListBox.Location = new System.Drawing.Point(53, 399);
+            this.checkedListBox.Name = "checkedListBox";
+            this.checkedListBox.Size = new System.Drawing.Size(165, 124);
+            this.checkedListBox.TabIndex = 2;
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Location = new System.Drawing.Point(224, 399);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(124, 32);
+            this.btnSelectAll.TabIndex = 3;
+            this.btnSelectAll.Text = "select all";
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            // 
+            // btnSelectNone
+            // 
+            this.btnSelectNone.Location = new System.Drawing.Point(224, 437);
+            this.btnSelectNone.Name = "btnSelectNone";
+            this.btnSelectNone.Size = new System.Drawing.Size(124, 31);
+            this.btnSelectNone.TabIndex = 4;
+            this.btnSelectNone.Text = "select none";
+            this.btnSelectNone.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 646);
+            this.Controls.Add(this.btnSelectNone);
+            this.Controls.Add(this.btnSelectAll);
+            this.Controls.Add(this.checkedListBox);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.chartCities);
             this.Name = "MainForm";
@@ -80,6 +112,9 @@
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCities;
         private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.CheckedListBox checkedListBox;
+        private System.Windows.Forms.Button btnSelectAll;
+        private System.Windows.Forms.Button btnSelectNone;
     }
 }
 

@@ -24,12 +24,13 @@ namespace TSP
         {
             new FileLoader().loadPostions();
             displayCitiesOnChart();
+            displayCitiesInCheckBox();
         }
 
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            foreach (City city in CityPositions.getInstance().getCities())
+            foreach (City city in CityPositions.getInstance().getRoute())
             {
                 Console.WriteLine(city.getNode());
             }
@@ -56,59 +57,93 @@ namespace TSP
         }
 
 
-        private void updateRoute(City city)
+        private void displayCitiesInCheckBox()
         {
+            checkedListBox.Items.Clear();
 
-            CityPositions cityPostions = CityPositions.getInstance();
-            List<City> route = cityPostions.getRoute();
-            // remove city
-            if (route.Contains(city))
+            List<City> cities = CityPositions.getInstance().getCities();
+
+            foreach (City c in cities)
             {
-                route.Remove(city);
+                checkedListBox.Items.Add(c);
+            }
+            
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                checkedListBox.SetItemChecked(i, true);
+            }
+
+            foreach (City c in checkedListBox.Items)
+            {
+                updateRoute(c);
+            }
+
+        }
+  private void updateRoute(City city)
+        {
+            CityPositions cityPostion = CityPositions.getInstance();
+
+
+            if (chartCities.Series.IsUniqueName("Route"))
+            {
+                chartCities.Series.Add("Route");
+                chartCities.Series[1].ChartType = SeriesChartType.FastLine;
+                chartCities.Series[1].IsVisibleInLegend = false;
+            }
+
+            // remove city
+            if (cityPostion.getRoute().Contains(city))
+            {
+                cityPostion.removeCityFromRoute(city);
 
                 chartCities.Series[0].Points[city.getNode()].Color = Color.Blue;
 
                 // reload line graph
                 chartCities.Series[1].Points.Clear();
 
-                foreach (City c in route)
+                foreach (City c in cityPostion.getRoute())
                 {
                     chartCities.Series[1].Points.AddXY(c.getX(), c.getY());
                 }
 
-                if (route.Count > 1)
+                if (cityPostion.getRouteCount() > 1)
                 {
-                    chartCities.Series[1].Points.AddXY(route[0].getX(), route[0].getY());
+                    chartCities.Series[1].Points.AddXY(cityPostion.getRouteNodeAt(0).getX(), cityPostion.getRouteNodeAt(0).getY());
                 }
 
                 // update check box
-                //routesCBList.SetItemChecked(city.node, false);
+                checkedListBox.SetItemChecked(city.getNode(), false);
             }
             //add city
             else
             {
-                route.Add(city);
+                cityPostion.addCityToRoute(city);
                 chartCities.Series[0].Points[city.getNode()].Color = Color.Green;
                 // reload line graph
                 chartCities.Series[1].Points.Clear();
 
-                foreach (City c in route)
+                foreach (City c in cityPostion.getRoute())
                 {
                     chartCities.Series[1].Points.AddXY(c.getX(), c.getY());
                 }
 
                 chartCities.Series[1].Points.AddXY(city.getX(), city.getY());
 
-                if (route.Count > 1)
+                if (cityPostion.getRouteCount() > 1)
                 {
-                    chartCities.Series[1].Points.AddXY(route[0].getX(), route[0].getY());
+                    chartCities.Series[1].Points.AddXY(cityPostion.getRouteNodeAt(0).getX(), cityPostion.getRouteNodeAt(0).getY());
                 }
 
-                //routesCBList.SetItemChecked(city.node, true);
+                checkedListBox.SetItemChecked(city.getNode(), true);
+               }
             }
         }
 
 
+
+
+       
+
         
-    }
+    
 }

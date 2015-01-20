@@ -50,6 +50,11 @@ namespace TSP
         }
 
         
+        public override string ToString()
+        {
+            return "Node:" + node + " X:" + x + " Y: " + y; 
+            
+        }
 
     }
 }
