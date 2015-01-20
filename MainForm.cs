@@ -13,11 +13,13 @@ namespace TSP
 {
     public partial class MainForm : Form
     {
+
+        DataPoint currentDataPoint;
         public MainForm()
         {
             InitializeComponent();
             Load += new EventHandler(MainForm_Load);
-            
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -25,6 +27,8 @@ namespace TSP
             new FileLoader().loadPostions();
             displayCitiesOnChart();
             displayCitiesInCheckBox();
+
+
         }
 
 
@@ -46,8 +50,8 @@ namespace TSP
             chartCities.ChartAreas[0].AxisX.MajorGrid.LineWidth = 0;
             chartCities.ChartAreas[0].AxisY.MajorGrid.LineWidth = 0;
             chartCities.Series[0].IsVisibleInLegend = false;
-         
-            foreach(City city in CityPositions.getInstance().getCities())
+
+            foreach (City city in CityPositions.getInstance().getCities())
             {
                 chartCities.Series[0].Points.AddXY(city.getX(), city.getY());
                 chartCities.Series[0].Points[chartCities.Series[0].Points.Count - 1].Color = Color.Blue;
@@ -67,7 +71,7 @@ namespace TSP
             {
                 checkedListBox.Items.Add(c);
             }
-            
+
             for (int i = 0; i < checkedListBox.Items.Count; i++)
             {
                 checkedListBox.SetItemChecked(i, true);
@@ -79,7 +83,7 @@ namespace TSP
             }
 
         }
-  private void updateRoute(City city)
+        private void updateRoute(City city)
         {
             CityPositions cityPostion = CityPositions.getInstance();
 
@@ -135,15 +139,140 @@ namespace TSP
                 }
 
                 checkedListBox.SetItemChecked(city.getNode(), true);
-               }
+            }
+        }
+
+        private void checkedListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            City selectedCity = CityPositions.getInstance().getCityNodeAt(checkedListBox.SelectedIndex);
+
+            updateRoute(selectedCity);
+
+            //displayTotalDistance(calculateTotalDistance(route));
+
+
+        }
+
+
+        private void chartCities_Click(object sender, EventArgs e)
+        {
+            // add DataPoint which has been clicked on
+            if (currentDataPoint != null)
+            {
+                updateRoute(getCityAtPostion(currentDataPoint));
+                //displayTotalDistance(calculateTotalDistance(route));
             }
         }
 
 
+        private City getCityAtPostion(DataPoint point)
+        {
+            // compare coordinate with every known city
+            foreach (City city in CityPositions.getInstance().getCities())
+            {
+                if (city.getX() == point.XValue && city.getY() == point.YValues[0])
+                {
+                    return city;
+                }
+            }
+            return null;
+        }
 
 
-       
 
-        
-    
+        private void chartCities_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            // get currently selected chart element
+            HitTestResult result = chartCities.HitTest(e.X, e.Y);
+
+            currentDataPoint = null;
+
+            // update data point colors
+            foreach (DataPoint point in chartCities.Series[0].Points)
+            {
+                // reset to blue
+                point.Color = Color.Blue;
+
+                // set green if it is a city within the route
+                foreach (City city in CityPositions.getInstance().getRoute())
+                {
+                    if (city.getX() == point.XValue && city.getY() == point.YValues[0])
+                    {
+                        point.Color = Color.Green;
+                    }
+                }
+            }
+
+            // check if selected element is a data point
+            if (result.ChartElementType == ChartElementType.DataPoint)
+            {
+                // check if selected data point is a point and not a line
+                if (result.Series.Name.Contains("Series1"))
+                {
+                    DataPoint point = chartCities.Series[0].Points[result.PointIndex];
+
+                    // change color to red while hovering over it
+                    point.Color = Color.Red;
+
+                    // save data point
+                    currentDataPoint = point;
+                }
+            }
+        }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            CityPositions postions = CityPositions.getInstance();
+            List<City> missingCities = new List<City>();
+
+            foreach (City city in postions.getCities())
+            {
+                if (!postions.cityIsInRoute(city))
+                    missingCities.Add(city);
+            }
+
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                checkedListBox.SetItemChecked(i, true);
+            }
+
+            foreach (City city in missingCities)
+            {
+                updateRoute(city);
+            }
+
+        }
+
+        private void btnSelectNone_Click(object sender, EventArgs e)
+        {
+            CityPositions postions = CityPositions.getInstance();
+            List<City> missingCities = new List<City>();
+
+            foreach (City city in postions.getCities())
+            {
+                if (postions.cityIsInRoute(city))
+                    missingCities.Add(city);
+            }
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                checkedListBox.SetItemChecked(i, false);
+            }
+
+            foreach (City city in missingCities)
+            {
+                updateRoute(city);
+            }
+
+        }
+
+
+    }
+
+
+
+
+
+
+
+
 }

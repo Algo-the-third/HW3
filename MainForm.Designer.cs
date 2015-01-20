@@ -54,6 +54,8 @@
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
+            this.chartCities.Click += new System.EventHandler(this.chartCities_Click);
+            this.chartCities.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chartCities_MouseMove);
             // 
             // btnCalculate
             // 
@@ -72,6 +74,7 @@
             this.checkedListBox.Name = "checkedListBox";
             this.checkedListBox.Size = new System.Drawing.Size(165, 124);
             this.checkedListBox.TabIndex = 2;
+            this.checkedListBox.SelectedIndexChanged += new System.EventHandler(this.checkedListBox_SelectedIndexChanged);
             // 
             // btnSelectAll
             // 
@@ -81,6 +84,7 @@
             this.btnSelectAll.TabIndex = 3;
             this.btnSelectAll.Text = "select all";
             this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
             // btnSelectNone
             // 
@@ -90,6 +94,7 @@
             this.btnSelectNone.TabIndex = 4;
             this.btnSelectNone.Text = "select none";
             this.btnSelectNone.UseVisualStyleBackColor = true;
+            this.btnSelectNone.Click += new System.EventHandler(this.btnSelectNone_Click);
             // 
             // MainForm
             // 

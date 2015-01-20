@@ -62,5 +62,20 @@ namespace TSP
             return route[positon];
         }
 
+
+        public City getCityNodeAt(int positon)
+        {
+            return cities[positon];
+        }
+
+        public Boolean cityIsInRoute(City city)
+        {
+            if (!route.Contains(city))
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }
