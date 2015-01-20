@@ -28,29 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnSelectNone = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.distanceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartCities)).BeginInit();
             this.SuspendLayout();
             // 
             // chartCities
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartCities.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartCities.Legends.Add(legend1);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartCities.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartCities.Series.Add(series1);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
@@ -96,11 +98,30 @@
             this.btnSelectNone.UseVisualStyleBackColor = true;
             this.btnSelectNone.Click += new System.EventHandler(this.btnSelectNone_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(224, 471);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Route Distance:";
+            // 
+            // distanceLabel
+            // 
+            this.distanceLabel.AutoSize = true;
+            this.distanceLabel.Location = new System.Drawing.Point(224, 491);
+            this.distanceLabel.Name = "distanceLabel";
+            this.distanceLabel.Size = new System.Drawing.Size(0, 13);
+            this.distanceLabel.TabIndex = 6;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 646);
+            this.Controls.Add(this.distanceLabel);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSelectNone);
             this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.checkedListBox);
@@ -110,6 +131,7 @@
             this.Text = "TCP - Winterterm 2014/15 - Felix Griewald, Sascha Feldmann, Marco Seidler";
             ((System.ComponentModel.ISupportInitialize)(this.chartCities)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -120,6 +142,8 @@
         private System.Windows.Forms.CheckedListBox checkedListBox;
         private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.Button btnSelectNone;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label distanceLabel;
     }
 }
 

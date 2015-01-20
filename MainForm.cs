@@ -81,6 +81,7 @@ namespace TSP
             {
                 updateRoute(c);
             }
+            displayRouteDistance();
 
         }
         private void updateRoute(City city)
@@ -148,7 +149,7 @@ namespace TSP
 
             updateRoute(selectedCity);
 
-            //displayTotalDistance(calculateTotalDistance(route));
+            displayRouteDistance();
 
 
         }
@@ -160,7 +161,7 @@ namespace TSP
             if (currentDataPoint != null)
             {
                 updateRoute(getCityAtPostion(currentDataPoint));
-                //displayTotalDistance(calculateTotalDistance(route));
+                displayRouteDistance();
             }
         }
 
@@ -240,6 +241,7 @@ namespace TSP
             {
                 updateRoute(city);
             }
+            displayRouteDistance();
 
         }
 
@@ -262,17 +264,17 @@ namespace TSP
             {
                 updateRoute(city);
             }
+            displayRouteDistance();
 
         }
 
 
+        private void displayRouteDistance()
+        {
+            distanceLabel.Text = new Distance().calculateTotalRouteDistance() + "";
+        }
+
+
     }
-
-
-
-
-
-
-
-
+    
 }
