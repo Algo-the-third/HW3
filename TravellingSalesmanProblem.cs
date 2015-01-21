@@ -27,6 +27,12 @@ namespace TSP
             }
         }
 
+        public void setCurrentOrder(List<int> currentOrder)
+        {
+            this.currentOrder = currentOrder;
+        }
+
+
         public string FilePath
         {
             get
@@ -130,6 +136,10 @@ namespace TSP
 
             return newOrder;
         }
+
+
+
+
 
         /// <summary>
         /// Annealing Process

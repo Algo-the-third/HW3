@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
@@ -79,16 +79,16 @@
             // 
             // chartCities
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartCities.Legends.Add(legend3);
+            chartArea4.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartCities.Legends.Add(legend4);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartCities.Series.Add(series3);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartCities.Series.Add(series4);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
@@ -223,6 +223,11 @@
             this.numTemperature.Name = "numTemperature";
             this.numTemperature.Size = new System.Drawing.Size(64, 20);
             this.numTemperature.TabIndex = 0;
+            this.numTemperature.Value = new decimal(new int[] {
+            17,
+            0,
+            0,
+            0});
             // 
             // numCoolingRate
             // 
@@ -230,6 +235,11 @@
             this.numCoolingRate.Name = "numCoolingRate";
             this.numCoolingRate.Size = new System.Drawing.Size(64, 20);
             this.numCoolingRate.TabIndex = 1;
+            this.numCoolingRate.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             // 
             // numAbsoluteTemperature
             // 
@@ -237,6 +247,11 @@
             this.numAbsoluteTemperature.Name = "numAbsoluteTemperature";
             this.numAbsoluteTemperature.Size = new System.Drawing.Size(64, 20);
             this.numAbsoluteTemperature.TabIndex = 2;
+            this.numAbsoluteTemperature.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             // 
             // label2
             // 

@@ -36,10 +36,44 @@ namespace TSP
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            foreach (City city in CityPositions.getInstance().getRoute())
+
+            List<int> currentOrder = new List<int>();
+            String mode = TabArea.SelectedTab.Text;
+            switch (mode)
             {
-                Console.WriteLine(city.getNode());
+                case "Simulated Annealing":
+                    {
+                        CityPositions cityPositions = CityPositions.getInstance();
+                        foreach (City city in cityPositions.getRoute())
+                        {
+                            currentOrder.Add(city.getNode());
+                        }
+                        double temperature = (double)numTemperature.Value;
+                        double coolingRate = (double)numCoolingRate.Value;
+                        double absoluteTemperature = (double)numAbsoluteTemperature.Value;
+
+                        // calculate new order
+                        TravellingSalesmanProblem tsp = new TravellingSalesmanProblem();
+                        
+
+
+
+                    
+                    
+                    
+                    }
+                    break;
+                case "Greedy Strategy":
+                    { }
+                    break;
+                case "Genetic Algorithm":
+                    { }
+                    break;
             }
+
+
+
+
         }
 
 

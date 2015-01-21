@@ -15,7 +15,7 @@ namespace TSP
         /// <param name="city1"></param>
         /// <param name="city2"></param>
         /// <returns></returns>
-        private double calculateDistance(City city1, City city2)
+        public double calculateDistance(City city1, City city2)
         {
             double x1 = city1.getX();
             double x2 = city2.getX();

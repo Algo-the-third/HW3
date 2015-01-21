@@ -9,6 +9,7 @@ namespace TSP
     abstract class Constants
     {
         public static String cityPositions = "../../data/tsp_PolskaCities.txt";
+        
 
     }
 }
