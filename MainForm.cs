@@ -32,6 +32,8 @@ namespace TSP
         }
 
 
+
+
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             foreach (City city in CityPositions.getInstance().getRoute())
@@ -91,6 +93,7 @@ namespace TSP
 
             if (chartCities.Series.IsUniqueName("Route"))
             {
+
                 chartCities.Series.Add("Route");
                 chartCities.Series[1].ChartType = SeriesChartType.FastLine;
                 chartCities.Series[1].IsVisibleInLegend = false;
@@ -275,6 +278,20 @@ namespace TSP
         }
 
 
+        /**
+         * Appends the resultTextBox from any Thread state, just call it inside another thread. 
+         */
+        private void appendTextBox(string value)
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<string>(appendTextBox), new object[] { value });
+                return;
+            }
+      
+            resultTextBox.AppendText("\r\n" + value);
+        }
+
     }
-    
+
 }
