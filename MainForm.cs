@@ -37,30 +37,12 @@ namespace TSP
         private void btnCalculate_Click(object sender, EventArgs e)
         {
 
-            List<int> currentOrder = new List<int>();
             String mode = TabArea.SelectedTab.Text;
             switch (mode)
             {
                 case "Simulated Annealing":
                     {
-                        CityPositions cityPositions = CityPositions.getInstance();
-                        foreach (City city in cityPositions.getRoute())
-                        {
-                            currentOrder.Add(city.getNode());
-                        }
-                        double temperature = (double)numTemperature.Value;
-                        double coolingRate = (double)numCoolingRate.Value;
-                        double absoluteTemperature = (double)numAbsoluteTemperature.Value;
-
-                        // calculate new order
-                        TravellingSalesmanProblem tsp = new TravellingSalesmanProblem();
-                        
-
-
-
-                    
-                    
-                    
+                        calculateSimulatedAnnealing();
                     }
                     break;
                 case "Greedy Strategy":
@@ -71,8 +53,22 @@ namespace TSP
                     break;
             }
 
+        }
 
+        private void calculateSimulatedAnnealing()
+        {
+            List<int> currentOrder = new List<int>();
+            CityPositions cityPositions = CityPositions.getInstance();
+            foreach (City city in cityPositions.getRoute())
+            {
+                currentOrder.Add(city.getNode());
+            }
+            double temperature = (double)numTemperature.Value;
+            double coolingRate = (double)numCoolingRate.Value;
+            double absoluteTemperature = (double)numAbsoluteTemperature.Value;
 
+            // calculate new order
+            TravellingSalesmanProblem tsp = new TravellingSalesmanProblem();
 
         }
 
@@ -322,7 +318,7 @@ namespace TSP
                 this.Invoke(new Action<string>(appendTextBox), new object[] { value });
                 return;
             }
-      
+
             resultTextBox.AppendText("\r\n" + value);
         }
 
