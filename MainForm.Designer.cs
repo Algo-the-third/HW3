@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
@@ -40,55 +40,53 @@
             this.distanceLabel = new System.Windows.Forms.Label();
             this.TabArea = new System.Windows.Forms.TabControl();
             this.annealingTab = new System.Windows.Forms.TabPage();
-            this.greedyTab = new System.Windows.Forms.TabPage();
-            this.geneticTab = new System.Windows.Forms.TabPage();
-            this.resultTextBox = new System.Windows.Forms.RichTextBox();
-            this.numTemperature = new System.Windows.Forms.NumericUpDown();
-            this.numCoolingRate = new System.Windows.Forms.NumericUpDown();
-            this.numAbsoluteTemperature = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.numGreedyMutationRate = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numTemperature = new System.Windows.Forms.NumericUpDown();
+            this.greedyTab = new System.Windows.Forms.TabPage();
             this.numGenerations = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.numMutationRate = new System.Windows.Forms.NumericUpDown();
-            this.numGenerationSize = new System.Windows.Forms.NumericUpDown();
-            this.numPopulationSize = new System.Windows.Forms.NumericUpDown();
+            this.numGreedyMutationRate = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.geneticTab = new System.Windows.Forms.TabPage();
             this.numCrossoverRate = new System.Windows.Forms.NumericUpDown();
+            this.numPopulationSize = new System.Windows.Forms.NumericUpDown();
+            this.numGenerationSize = new System.Windows.Forms.NumericUpDown();
+            this.numMutationRate = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.resultTextBox = new System.Windows.Forms.RichTextBox();
+            this.txtCoolingRate = new System.Windows.Forms.TextBox();
+            this.txtAbsoluteTemperature = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartCities)).BeginInit();
             this.TabArea.SuspendLayout();
             this.annealingTab.SuspendLayout();
-            this.greedyTab.SuspendLayout();
-            this.geneticTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTemperature)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCoolingRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAbsoluteTemperature)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGreedyMutationRate)).BeginInit();
+            this.greedyTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGenerations)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMutationRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGenerationSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPopulationSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGreedyMutationRate)).BeginInit();
+            this.geneticTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCrossoverRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPopulationSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGenerationSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMutationRate)).BeginInit();
             this.SuspendLayout();
             // 
             // chartCities
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chartCities.Legends.Add(legend4);
+            chartArea5.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chartCities.Legends.Add(legend5);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chartCities.Series.Add(series4);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chartCities.Series.Add(series5);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
@@ -164,11 +162,11 @@
             // 
             // annealingTab
             // 
+            this.annealingTab.Controls.Add(this.txtAbsoluteTemperature);
+            this.annealingTab.Controls.Add(this.txtCoolingRate);
             this.annealingTab.Controls.Add(this.label4);
             this.annealingTab.Controls.Add(this.label3);
             this.annealingTab.Controls.Add(this.label2);
-            this.annealingTab.Controls.Add(this.numAbsoluteTemperature);
-            this.annealingTab.Controls.Add(this.numCoolingRate);
             this.annealingTab.Controls.Add(this.numTemperature);
             this.annealingTab.Location = new System.Drawing.Point(4, 22);
             this.annealingTab.Name = "annealingTab";
@@ -177,6 +175,55 @@
             this.annealingTab.TabIndex = 0;
             this.annealingTab.Text = "Simulated Annealing";
             this.annealingTab.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(198, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 26);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Absolute \r\nTemperature";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(111, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Cooling Rate";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(23, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Temperature";
+            // 
+            // numTemperature
+            // 
+            this.numTemperature.Location = new System.Drawing.Point(26, 39);
+            this.numTemperature.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numTemperature.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.numTemperature.Name = "numTemperature";
+            this.numTemperature.Size = new System.Drawing.Size(64, 20);
+            this.numTemperature.TabIndex = 0;
+            this.numTemperature.Value = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             // 
             // greedyTab
             // 
@@ -191,6 +238,38 @@
             this.greedyTab.TabIndex = 1;
             this.greedyTab.Text = "Greedy Strategy";
             this.greedyTab.UseVisualStyleBackColor = true;
+            // 
+            // numGenerations
+            // 
+            this.numGenerations.Location = new System.Drawing.Point(169, 44);
+            this.numGenerations.Name = "numGenerations";
+            this.numGenerations.Size = new System.Drawing.Size(61, 20);
+            this.numGenerations.TabIndex = 3;
+            // 
+            // numGreedyMutationRate
+            // 
+            this.numGreedyMutationRate.Location = new System.Drawing.Point(40, 44);
+            this.numGreedyMutationRate.Name = "numGreedyMutationRate";
+            this.numGreedyMutationRate.Size = new System.Drawing.Size(64, 20);
+            this.numGreedyMutationRate.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(166, 27);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Generations";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(37, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Mutation Rate";
             // 
             // geneticTab
             // 
@@ -209,135 +288,33 @@
             this.geneticTab.Text = "Genetic Algorithm";
             this.geneticTab.UseVisualStyleBackColor = true;
             // 
-            // resultTextBox
+            // numCrossoverRate
             // 
-            this.resultTextBox.Location = new System.Drawing.Point(376, 399);
-            this.resultTextBox.Name = "resultTextBox";
-            this.resultTextBox.Size = new System.Drawing.Size(476, 292);
-            this.resultTextBox.TabIndex = 8;
-            this.resultTextBox.Text = "";
+            this.numCrossoverRate.Location = new System.Drawing.Point(173, 29);
+            this.numCrossoverRate.Name = "numCrossoverRate";
+            this.numCrossoverRate.Size = new System.Drawing.Size(64, 20);
+            this.numCrossoverRate.TabIndex = 6;
             // 
-            // numTemperature
+            // numPopulationSize
             // 
-            this.numTemperature.Location = new System.Drawing.Point(26, 39);
-            this.numTemperature.Name = "numTemperature";
-            this.numTemperature.Size = new System.Drawing.Size(64, 20);
-            this.numTemperature.TabIndex = 0;
-            this.numTemperature.Value = new decimal(new int[] {
-            17,
-            0,
-            0,
-            0});
+            this.numPopulationSize.Location = new System.Drawing.Point(20, 71);
+            this.numPopulationSize.Name = "numPopulationSize";
+            this.numPopulationSize.Size = new System.Drawing.Size(64, 20);
+            this.numPopulationSize.TabIndex = 5;
             // 
-            // numCoolingRate
+            // numGenerationSize
             // 
-            this.numCoolingRate.Location = new System.Drawing.Point(115, 39);
-            this.numCoolingRate.Name = "numCoolingRate";
-            this.numCoolingRate.Size = new System.Drawing.Size(64, 20);
-            this.numCoolingRate.TabIndex = 1;
-            this.numCoolingRate.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
+            this.numGenerationSize.Location = new System.Drawing.Point(173, 71);
+            this.numGenerationSize.Name = "numGenerationSize";
+            this.numGenerationSize.Size = new System.Drawing.Size(64, 20);
+            this.numGenerationSize.TabIndex = 5;
             // 
-            // numAbsoluteTemperature
+            // numMutationRate
             // 
-            this.numAbsoluteTemperature.Location = new System.Drawing.Point(201, 39);
-            this.numAbsoluteTemperature.Name = "numAbsoluteTemperature";
-            this.numAbsoluteTemperature.Size = new System.Drawing.Size(64, 20);
-            this.numAbsoluteTemperature.TabIndex = 2;
-            this.numAbsoluteTemperature.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Temperature";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(111, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Cooling Rate";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(198, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 26);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Absolute \r\nTemperature";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(37, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Mutation Rate";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(166, 27);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Generations";
-            // 
-            // numGreedyMutationRate
-            // 
-            this.numGreedyMutationRate.Location = new System.Drawing.Point(40, 44);
-            this.numGreedyMutationRate.Name = "numGreedyMutationRate";
-            this.numGreedyMutationRate.Size = new System.Drawing.Size(64, 20);
-            this.numGreedyMutationRate.TabIndex = 2;
-            // 
-            // numGenerations
-            // 
-            this.numGenerations.Location = new System.Drawing.Point(169, 44);
-            this.numGenerations.Name = "numGenerations";
-            this.numGenerations.Size = new System.Drawing.Size(61, 20);
-            this.numGenerations.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 13);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Mutation Rate";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(170, 13);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 13);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Crossover Rate";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(17, 55);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 13);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Population Size";
+            this.numMutationRate.Location = new System.Drawing.Point(20, 29);
+            this.numMutationRate.Name = "numMutationRate";
+            this.numMutationRate.Size = new System.Drawing.Size(64, 20);
+            this.numMutationRate.TabIndex = 4;
             // 
             // label10
             // 
@@ -348,33 +325,56 @@
             this.label10.TabIndex = 3;
             this.label10.Text = "Generation Size";
             // 
-            // numMutationRate
+            // label9
             // 
-            this.numMutationRate.Location = new System.Drawing.Point(20, 29);
-            this.numMutationRate.Name = "numMutationRate";
-            this.numMutationRate.Size = new System.Drawing.Size(64, 20);
-            this.numMutationRate.TabIndex = 4;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(17, 55);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(80, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Population Size";
             // 
-            // numGenerationSize
+            // label8
             // 
-            this.numGenerationSize.Location = new System.Drawing.Point(173, 71);
-            this.numGenerationSize.Name = "numGenerationSize";
-            this.numGenerationSize.Size = new System.Drawing.Size(64, 20);
-            this.numGenerationSize.TabIndex = 5;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(170, 13);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(80, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Crossover Rate";
             // 
-            // numPopulationSize
+            // label7
             // 
-            this.numPopulationSize.Location = new System.Drawing.Point(20, 71);
-            this.numPopulationSize.Name = "numPopulationSize";
-            this.numPopulationSize.Size = new System.Drawing.Size(64, 20);
-            this.numPopulationSize.TabIndex = 5;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 13);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Mutation Rate";
             // 
-            // numCrossoverRate
+            // resultTextBox
             // 
-            this.numCrossoverRate.Location = new System.Drawing.Point(173, 29);
-            this.numCrossoverRate.Name = "numCrossoverRate";
-            this.numCrossoverRate.Size = new System.Drawing.Size(64, 20);
-            this.numCrossoverRate.TabIndex = 6;
+            this.resultTextBox.Location = new System.Drawing.Point(376, 399);
+            this.resultTextBox.Name = "resultTextBox";
+            this.resultTextBox.Size = new System.Drawing.Size(476, 292);
+            this.resultTextBox.TabIndex = 8;
+            this.resultTextBox.Text = "";
+            // 
+            // txtCoolingRate
+            // 
+            this.txtCoolingRate.Location = new System.Drawing.Point(114, 38);
+            this.txtCoolingRate.Name = "txtCoolingRate";
+            this.txtCoolingRate.Size = new System.Drawing.Size(65, 20);
+            this.txtCoolingRate.TabIndex = 6;
+            this.txtCoolingRate.Text = "0,9999";
+            // 
+            // txtAbsoluteTemperature
+            // 
+            this.txtAbsoluteTemperature.Location = new System.Drawing.Point(201, 38);
+            this.txtAbsoluteTemperature.Name = "txtAbsoluteTemperature";
+            this.txtAbsoluteTemperature.Size = new System.Drawing.Size(64, 20);
+            this.txtAbsoluteTemperature.TabIndex = 7;
+            this.txtAbsoluteTemperature.Text = "0,00001";
             // 
             // MainForm
             // 
@@ -396,19 +396,17 @@
             this.TabArea.ResumeLayout(false);
             this.annealingTab.ResumeLayout(false);
             this.annealingTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTemperature)).EndInit();
             this.greedyTab.ResumeLayout(false);
             this.greedyTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numGenerations)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGreedyMutationRate)).EndInit();
             this.geneticTab.ResumeLayout(false);
             this.geneticTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTemperature)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCoolingRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAbsoluteTemperature)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGreedyMutationRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGenerations)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMutationRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGenerationSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPopulationSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCrossoverRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPopulationSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGenerationSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMutationRate)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,8 +429,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numAbsoluteTemperature;
-        private System.Windows.Forms.NumericUpDown numCoolingRate;
         private System.Windows.Forms.NumericUpDown numTemperature;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -446,6 +442,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtAbsoluteTemperature;
+        private System.Windows.Forms.TextBox txtCoolingRate;
     }
 }
 

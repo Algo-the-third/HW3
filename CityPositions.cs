@@ -10,13 +10,14 @@ namespace TSP
     {
         private static CityPositions cityPositions;
         private List<City> route;
-
         private List<City> cities;
+        private List<City> sortedRoute;
 
         private CityPositions()
         {
             cities = new List<City>();
             route = new List<City>();
+
         }
 
         public static CityPositions getInstance()
@@ -43,7 +44,8 @@ namespace TSP
             return route;
         }
 
-        public void addCityToRoute(City city){
+        public void addCityToRoute(City city)
+        {
             route.Add(city);
         }
 
@@ -75,6 +77,32 @@ namespace TSP
                 return false;
             }
             return true;
+        }
+
+        public List<City> getSortedRoute()
+        {
+            return sortedRoute;
+        }
+
+        /**
+         * Method generates a List of Cities based on the given shortest route Nodelist. 
+         * 
+         */
+        public void generateSortedRouteByGivenNodelist(List<int> list)
+        {
+            sortedRoute = new List<City>();
+            foreach (int i in list)
+            {
+                foreach (City city in route)
+                {
+                    if (city.getNode() == i)
+                    {
+                        sortedRoute.Add(city);
+                        break;
+                    }
+                }
+            }
+
         }
 
     }

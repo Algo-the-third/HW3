@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -14,7 +15,11 @@ namespace TSP
     public partial class MainForm : Form
     {
 
-        DataPoint currentDataPoint;
+        private DataPoint currentDataPoint;
+        private static Boolean calculateThreadActive = false;
+
+
+
         public MainForm()
         {
             InitializeComponent();
@@ -42,7 +47,13 @@ namespace TSP
             {
                 case "Simulated Annealing":
                     {
-                        calculateSimulatedAnnealing();
+                        if (calculateThreadActive)
+                        {
+                            appendTextBox("There is an other calculation process active please wait.");
+                            return;
+                        }
+                        new Thread(calculateSimulatedAnnealing).Start();
+
                     }
                     break;
                 case "Greedy Strategy":
@@ -57,22 +68,80 @@ namespace TSP
 
         private void calculateSimulatedAnnealing()
         {
-            List<int> currentOrder = new List<int>();
-            CityPositions cityPositions = CityPositions.getInstance();
-            foreach (City city in cityPositions.getRoute())
+            calculateThreadActive = true;
+            double temperature;
+            double coolingRate;
+            double absoluteTemperature;
+
+            try
             {
-                currentOrder.Add(city.getNode());
+                temperature = (double)numTemperature.Value;
+                coolingRate = Convert.ToDouble(txtCoolingRate.Text);
+                absoluteTemperature = Convert.ToDouble(txtAbsoluteTemperature.Text);
+
             }
-            double temperature = (double)numTemperature.Value;
-            double coolingRate = (double)numCoolingRate.Value;
-            double absoluteTemperature = (double)numAbsoluteTemperature.Value;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                appendTextBox("Your input wasn't valid!");
+                calculateThreadActive = false;
+                return;
+            }
 
+            String path = "";
             // calculate new order
-            TravellingSalesmanProblem tsp = new TravellingSalesmanProblem();
+            TravellingSalesmanProblem problem = new TravellingSalesmanProblem();
+            problem.setTemperature(temperature);
+            problem.setCoolingRate(coolingRate);
+            problem.setAbsoluteTemperature(absoluteTemperature);
+            problem.generateCurrentOrder();
+            problem.Anneal();
 
+            for (int i = 0; i < problem.CitiesOrder.Count - 1; i++)
+            {
+                path += problem.CitiesOrder[i] + " -> ";
+            }
+            path += problem.CitiesOrder[problem.CitiesOrder.Count - 1];
+
+            appendTextBox("Simulated Annealing ");
+            appendTextBox("Shortest Route: " + path);
+            appendTextBox("The shortest distance is: " + problem.ShortestDistance.ToString());
+
+
+            //Creates a list of Cities in Citypostions based on the given sorted node list.
+            CityPositions.getInstance().generateSortedRouteByGivenNodelist(problem.CitiesOrder);
+            redrawRouteOnChart();
+            displayRouteDistance(problem.ShortestDistance);
+            calculateThreadActive = false;
         }
 
+        private void redrawRouteOnChart()
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action(redrawRouteOnChart), new object[] { });
+                return;
+            }
 
+
+            CityPositions cityPostion = CityPositions.getInstance();
+
+
+            // reload line graph
+            chartCities.Series[1].Points.Clear();
+
+            foreach (City c in cityPostion.getSortedRoute())
+            {
+                chartCities.Series[1].Points.AddXY(c.getX(), c.getY());
+            }
+
+            if (cityPostion.getRouteCount() > 1)
+            {
+                chartCities.Series[1].Points.AddXY(cityPostion.getRouteNodeAt(0).getX(), cityPostion.getRouteNodeAt(0).getY());
+            }
+
+
+        }
         private void displayCitiesOnChart()
         {
             chartCities.Series[0].Points.Clear();
@@ -305,6 +374,18 @@ namespace TSP
         private void displayRouteDistance()
         {
             distanceLabel.Text = new Distance().calculateTotalRouteDistance() + "";
+        }
+
+
+        private void displayRouteDistance(double distance)
+        {
+
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<double>(displayRouteDistance), new object[] { distance });
+                return;
+            }
+            distanceLabel.Text = distance + "";
         }
 
 
