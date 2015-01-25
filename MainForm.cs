@@ -88,6 +88,12 @@ namespace TSP
                 return;
             }
 
+            if (coolingRate <= 0 | coolingRate >= 1)
+            {
+                appendTextBox("Cooling Rate has to be 1<x<0. Please choose a valid value.");
+                return;
+            }
+
             String path = "";
             // calculate new order
             TravellingSalesmanProblem problem = new TravellingSalesmanProblem();
