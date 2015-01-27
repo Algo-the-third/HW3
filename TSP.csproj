@@ -53,6 +53,7 @@
     <Compile Include="GA.cs" />
     <Compile Include="Genome.cs" />
     <Compile Include="GenomeComparer.cs" />
+    <Compile Include="GreedyStrategy.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

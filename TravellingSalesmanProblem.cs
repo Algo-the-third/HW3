@@ -9,11 +9,11 @@ namespace TSP
     public class TravellingSalesmanProblem
     {
         private string filePath;
-        private List<int> currentOrder = new List<int>();
-        private List<int> nextOrder = new List<int>();
-        private double[,] distances;
+        protected List<int> currentOrder = new List<int>();
+        protected List<int> nextOrder = new List<int>();
+        protected double[,] distances;
         private Random random = new Random();
-        private double shortestDistance = 0;
+        protected double shortestDistance = 0;
 
         double temperature = 10000.0;
         double coolingRate = 0.9999;
@@ -34,8 +34,9 @@ namespace TSP
         public void setCurrentOrder(List<int> currentOrder)
         {
             this.currentOrder = currentOrder;
+          
         }
-
+       
 
         public string FilePath
         {
@@ -99,7 +100,7 @@ namespace TSP
         /// </summary>
         /// <param name="order">A list containing the order of cities</param>
         /// <returns></returns>
-        private double GetTotalDistance(List<int> order)
+        protected double GetTotalDistance(List<int> order)
         {
             double distance = 0;
 

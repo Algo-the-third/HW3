@@ -57,12 +57,53 @@ namespace TSP
                     }
                     break;
                 case "Greedy Strategy":
-                    { }
+                    {
+                        if (calculateThreadActive)
+                        {
+                            appendTextBox("There is an other calculation process active please wait.");
+                            return;
+                        }
+                        new Thread(calculateGreedyStrategy).Start();
+
+                    }
                     break;
                 case "Genetic Algorithm":
                     { }
                     break;
             }
+
+        }
+
+
+        private void calculateGreedyStrategy()
+        {
+            calculateThreadActive = true;
+            GreedyStrategy greedyStrategy = new GreedyStrategy();
+            greedyStrategy.generateCurrentOrder();
+            greedyStrategy.calculateNNRoute();
+
+            String path = "";
+
+            for (int i = 0; i < greedyStrategy.CitiesOrder.Count - 1; i++)
+            {
+                path += greedyStrategy.CitiesOrder[i] + " -> ";
+            }
+            path += greedyStrategy.CitiesOrder[greedyStrategy.CitiesOrder.Count - 1];
+
+            appendTextBox("Greedy Strategy");
+            appendTextBox("Shortest Route: " + path);
+
+            //Creates a list of Cities in Citypostions based on the given sorted node list.
+            CityPositions cityPostions = CityPositions.getInstance();
+            cityPostions.generateSortedRouteByGivenNodelist(greedyStrategy.CitiesOrder);
+            //Calculate current Route distance
+            Double currentRouteDistance = new Distance().calculateTotalRouteDistance(cityPostions.getSortedRoute());
+
+            appendTextBox("The shortest distance is: " + currentRouteDistance);
+            redrawRouteOnChart();
+            displayRouteDistance(currentRouteDistance);
+          
+            calculateThreadActive = false;
 
         }
 
@@ -382,6 +423,7 @@ namespace TSP
             distanceLabel.Text = new Distance().calculateTotalRouteDistance() + "";
         }
 
+      
 
         private void displayRouteDistance(double distance)
         {

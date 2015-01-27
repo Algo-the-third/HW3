@@ -54,6 +54,22 @@ namespace TSP
             return result;
         }
 
+        public double calculateTotalRouteDistance(List<City> route)
+        {
+            double result = 0f;
+
+            for (int i = 1; i < route.Count; i++)
+            {
+                result += calculateDistance(route[i], route[i - 1]);
+            }
+
+            if (route.Count > 1)
+            {
+                result += calculateDistance(route[0], route[route.Count - 1]);
+            }
+
+            return result;
+        }
 
     }
 }

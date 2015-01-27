@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
@@ -40,15 +40,14 @@
             this.distanceLabel = new System.Windows.Forms.Label();
             this.TabArea = new System.Windows.Forms.TabControl();
             this.annealingTab = new System.Windows.Forms.TabPage();
+            this.txtAbsoluteTemperature = new System.Windows.Forms.TextBox();
+            this.txtCoolingRate = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.numTemperature = new System.Windows.Forms.NumericUpDown();
             this.greedyTab = new System.Windows.Forms.TabPage();
-            this.numGenerations = new System.Windows.Forms.NumericUpDown();
-            this.numGreedyMutationRate = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.geneticTab = new System.Windows.Forms.TabPage();
             this.numCrossoverRate = new System.Windows.Forms.NumericUpDown();
             this.numPopulationSize = new System.Windows.Forms.NumericUpDown();
@@ -59,15 +58,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.resultTextBox = new System.Windows.Forms.RichTextBox();
-            this.txtCoolingRate = new System.Windows.Forms.TextBox();
-            this.txtAbsoluteTemperature = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartCities)).BeginInit();
             this.TabArea.SuspendLayout();
             this.annealingTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTemperature)).BeginInit();
             this.greedyTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numGenerations)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGreedyMutationRate)).BeginInit();
             this.geneticTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCrossoverRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPopulationSize)).BeginInit();
@@ -77,16 +72,16 @@
             // 
             // chartCities
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chartCities.Legends.Add(legend5);
+            chartArea1.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartCities.Legends.Add(legend1);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chartCities.Series.Add(series5);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartCities.Series.Add(series1);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
@@ -176,6 +171,22 @@
             this.annealingTab.Text = "Simulated Annealing";
             this.annealingTab.UseVisualStyleBackColor = true;
             // 
+            // txtAbsoluteTemperature
+            // 
+            this.txtAbsoluteTemperature.Location = new System.Drawing.Point(201, 38);
+            this.txtAbsoluteTemperature.Name = "txtAbsoluteTemperature";
+            this.txtAbsoluteTemperature.Size = new System.Drawing.Size(64, 20);
+            this.txtAbsoluteTemperature.TabIndex = 7;
+            this.txtAbsoluteTemperature.Text = "0,00001";
+            // 
+            // txtCoolingRate
+            // 
+            this.txtCoolingRate.Location = new System.Drawing.Point(114, 38);
+            this.txtCoolingRate.Name = "txtCoolingRate";
+            this.txtCoolingRate.Size = new System.Drawing.Size(65, 20);
+            this.txtCoolingRate.TabIndex = 6;
+            this.txtCoolingRate.Text = "0,9999";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -227,10 +238,7 @@
             // 
             // greedyTab
             // 
-            this.greedyTab.Controls.Add(this.numGenerations);
-            this.greedyTab.Controls.Add(this.numGreedyMutationRate);
             this.greedyTab.Controls.Add(this.label6);
-            this.greedyTab.Controls.Add(this.label5);
             this.greedyTab.Location = new System.Drawing.Point(4, 22);
             this.greedyTab.Name = "greedyTab";
             this.greedyTab.Padding = new System.Windows.Forms.Padding(3);
@@ -239,37 +247,14 @@
             this.greedyTab.Text = "Greedy Strategy";
             this.greedyTab.UseVisualStyleBackColor = true;
             // 
-            // numGenerations
-            // 
-            this.numGenerations.Location = new System.Drawing.Point(169, 44);
-            this.numGenerations.Name = "numGenerations";
-            this.numGenerations.Size = new System.Drawing.Size(61, 20);
-            this.numGenerations.TabIndex = 3;
-            // 
-            // numGreedyMutationRate
-            // 
-            this.numGreedyMutationRate.Location = new System.Drawing.Point(40, 44);
-            this.numGreedyMutationRate.Name = "numGreedyMutationRate";
-            this.numGreedyMutationRate.Size = new System.Drawing.Size(64, 20);
-            this.numGreedyMutationRate.TabIndex = 2;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(166, 27);
+            this.label6.Location = new System.Drawing.Point(56, 33);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.Size = new System.Drawing.Size(180, 13);
             this.label6.TabIndex = 1;
-            this.label6.Text = "Generations";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(37, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Mutation Rate";
+            this.label6.Text = "No options available for this strategy.";
             // 
             // geneticTab
             // 
@@ -360,22 +345,6 @@
             this.resultTextBox.TabIndex = 8;
             this.resultTextBox.Text = "";
             // 
-            // txtCoolingRate
-            // 
-            this.txtCoolingRate.Location = new System.Drawing.Point(114, 38);
-            this.txtCoolingRate.Name = "txtCoolingRate";
-            this.txtCoolingRate.Size = new System.Drawing.Size(65, 20);
-            this.txtCoolingRate.TabIndex = 6;
-            this.txtCoolingRate.Text = "0,9999";
-            // 
-            // txtAbsoluteTemperature
-            // 
-            this.txtAbsoluteTemperature.Location = new System.Drawing.Point(201, 38);
-            this.txtAbsoluteTemperature.Name = "txtAbsoluteTemperature";
-            this.txtAbsoluteTemperature.Size = new System.Drawing.Size(64, 20);
-            this.txtAbsoluteTemperature.TabIndex = 7;
-            this.txtAbsoluteTemperature.Text = "0,00001";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,8 +368,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numTemperature)).EndInit();
             this.greedyTab.ResumeLayout(false);
             this.greedyTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numGenerations)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGreedyMutationRate)).EndInit();
             this.geneticTab.ResumeLayout(false);
             this.geneticTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCrossoverRate)).EndInit();
@@ -431,9 +398,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numTemperature;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numGenerations;
-        private System.Windows.Forms.NumericUpDown numGreedyMutationRate;
         private System.Windows.Forms.NumericUpDown numCrossoverRate;
         private System.Windows.Forms.NumericUpDown numPopulationSize;
         private System.Windows.Forms.NumericUpDown numGenerationSize;
