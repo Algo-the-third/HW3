@@ -84,6 +84,16 @@ namespace TSP
             return sortedRoute;
         }
 
+        public List<int> getCurrentRouteNodesList()
+        {
+            List<int> list = new List<int>();
+            foreach (City c in route)
+            {
+                list.Add(c.getNode());
+            }
+            return list;
+        }
+
         /**
          * Method generates a List of Cities based on the given shortest route Nodelist. 
          * 
