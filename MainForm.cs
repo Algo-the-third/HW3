@@ -123,7 +123,7 @@ namespace TSP
 
 
             //Creates a list of Cities in Citypostions based on the given sorted node list.
-            CityPositions.getInstance().generateSortedRouteByGivenNodelist(problem.CitiesOrder);
+            CityPositions.getInstance().generateSortedRouteByGivenNodeIdlist(problem.CitiesOrder);
             redrawRouteOnChart();
             displayRouteDistance(problem.ShortestDistance);
             calculateThreadActive = false;
@@ -150,7 +150,7 @@ namespace TSP
 
             //Creates a list of Cities in Citypostions based on the given sorted node list.
             CityPositions cityPostions = CityPositions.getInstance();
-            cityPostions.generateSortedRouteByGivenNodelist(greedyStrategy.CitiesOrder);
+            cityPostions.generateSortedRouteByGivenNodeIdlist(greedyStrategy.CitiesOrder);
             //Calculate current Route distance
             Double currentRouteDistance = new Distance().calculateTotalRouteDistance(cityPostions.getSortedRoute());
 
@@ -453,6 +453,23 @@ namespace TSP
             }
 
             resultTextBox.AppendText("\r\n" + value);
+        }
+
+        private void btnRandomRoute_Click(object sender, EventArgs e)
+        {
+            SimulatedAnnealingStrategy strategy = new SimulatedAnnealingStrategy();
+            strategy.generateCurrentOrder();
+            List<int> randomArrangement = strategy.GetNextRandomArrangement(strategy.CitiesOrder);
+
+            CityPositions.getInstance().generateSortedRouteByGivenNodeIdlist(randomArrangement);
+            Double currentRouteDistance = new Distance().calculateTotalRouteDistance(CityPositions.getInstance().getSortedRoute());
+
+            appendTextBox("Generating random route...");
+            appendTextBox("The random distance is " + currentRouteDistance);
+            redrawRouteOnChart();
+            displayRouteDistance(currentRouteDistance);
+
+            calculateThreadActive = false;
         }
 
     }

@@ -97,15 +97,15 @@ namespace TSP
         /// <summary>
         /// Method generates a List of Cities based on the given shortest route Nodelist. 
         /// </summary>
-        /// <param name="list">List of (sorted) NodeIDs as defined in City instances</param>
-        public void generateSortedRouteByGivenNodelist(List<int> list)
+        /// <param name="nodeIdList">List of (sorted) NodeIDs as defined in City instances</param>
+        public void generateSortedRouteByGivenNodeIdlist(List<int> nodeIdList)
         {
             sortedRoute = new List<City>();
-            foreach (int i in list)
+            foreach (int nodeId in nodeIdList)
             {
                 foreach (City city in route)
                 {
-                    if (city.getNodeId() == i)
+                    if (city.getNodeId() == nodeId)
                     {
                         sortedRoute.Add(city);
                         break;
@@ -113,6 +113,19 @@ namespace TSP
                 }
             }
 
+        }
+
+        public bool routeHasCityIndex(int cityIndex)
+        {
+            foreach (City city in this.route)
+            {
+                if (cityIndex == city.getNodeId())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
     }

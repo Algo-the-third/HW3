@@ -10,6 +10,7 @@ namespace TSP
     {
         private string filePath;
         protected List<int> currentOrder = new List<int>();
+
         protected List<int> nextRandomOrder = new List<int>();
         protected double[,] distances;
         private Random random = new Random();
@@ -61,12 +62,13 @@ namespace TSP
 
             for (int i = 0; i < order.Count - 1; i++)
             {
-                distance += distances[order[i], order[i + 1]];
+                distance += distances[i, i + 1];
             }
 
+            // add distance from last to first city
             if (order.Count > 0)
             {
-                distance += distances[order[order.Count - 1], 0];
+                distance += distances[order.Count - 1, 0];
             }
 
             return distance;
@@ -77,7 +79,7 @@ namespace TSP
         /// </summary>
         /// <param name="order"></param>
         /// <returns>List containing the nodeIds of City instances in the CityPositions collection.</returns>
-        private List<int> GetNextArrangement(List<int> order)
+        public List<int> GetNextRandomArrangement(List<int> order)
         {
             List<int> newOrder = new List<int>();
 
@@ -133,7 +135,7 @@ namespace TSP
 
             while (temperature > absoluteTemperature)
             {
-                nextRandomOrder = GetNextArrangement(currentOrder);
+                nextRandomOrder = GetNextRandomArrangement(currentOrder);
 
                 deltaDistance = GetTotalDistance(nextRandomOrder) - currentDistance;
 
@@ -165,10 +167,12 @@ namespace TSP
         {
 
             List<City> route = CityPositions.getInstance().getRoute();
+            List<City> cities = CityPositions.getInstance().getCities();
 
             Distance distance = new Distance();
 
             int routeCount = route.Count;
+            int citiesCount = cities.Count;
 
             distances = new double[routeCount, routeCount];
 
@@ -182,7 +186,7 @@ namespace TSP
                 //the number of rows in this matrix represent the number of cities
                 //we are representing each city by an index from 0 to N - 1
                 //where N is the total number of cities
-                currentOrder.Add(i);
+                currentOrder.Add(route[i].getNodeId());
             }
 
             if (currentOrder.Count < 1)
