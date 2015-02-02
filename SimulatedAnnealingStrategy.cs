@@ -9,6 +9,10 @@ namespace TSP
     public class SimulatedAnnealingStrategy
     {
         private string filePath;
+        /**
+         * Dictionary of key nodeId -> internal mapping in currentOrder list.
+         **/
+        protected Dictionary<int, int> inputOrder = new Dictionary<int, int>();
         protected List<int> currentOrder = new List<int>();
 
         protected List<int> nextRandomOrder = new List<int>();
@@ -62,16 +66,27 @@ namespace TSP
 
             for (int i = 0; i < order.Count - 1; i++)
             {
-                distance += distances[i, i + 1];
+                distance += getDistance(order, i, i+1);
             }
 
             // add distance from last to first city
             if (order.Count > 0)
             {
-                distance += distances[order.Count - 1, 0];
+               // distance += distances[order.Count - 1, 0];
+                distance += getDistance(order, order.Count - 1, 0);
             }
 
             return distance;
+        }
+
+        protected double getDistance(List<int> order, int leftIndex, int rightIndex)
+        {
+            int leftNodeId = order[leftIndex];
+            int leftDistancesIndex = this.inputOrder[leftNodeId];
+            int rightNodeId = order[rightIndex];
+            int rightDistancesIndex = this.inputOrder[rightNodeId];
+
+            return this.distances[leftDistancesIndex, rightDistancesIndex];
         }
 
         /// <summary>
@@ -187,6 +202,7 @@ namespace TSP
                 //we are representing each city by an index from 0 to N - 1
                 //where N is the total number of cities
                 currentOrder.Add(route[i].getNodeId());
+                inputOrder.Add(route[i].getNodeId(), i);
             }
 
             if (currentOrder.Count < 1)
