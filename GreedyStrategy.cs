@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TSP
 {
     /**
-     * Algorithm used the nearest neighour behaviour in order to get the local optimums.
+     * Algorithm used the nearest neighbour behaviour in order to get the local optimums.
      * */
     class GreedyStrategy : TravellingSalesmanProblem
     {
