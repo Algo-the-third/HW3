@@ -74,6 +74,61 @@ namespace TSP
 
         }
 
+        private void calculateSimulatedAnnealing()
+        {
+            calculateThreadActive = true;
+            double temperature;
+            double coolingRate;
+            double absoluteTemperature;
+
+            try
+            {
+                temperature = (double)numTemperature.Value;
+                coolingRate = Convert.ToDouble(txtCoolingRate.Text);
+                absoluteTemperature = Convert.ToDouble(txtAbsoluteTemperature.Text);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                appendTextBox("Your input wasn't valid!");
+                calculateThreadActive = false;
+                return;
+            }
+
+            if (coolingRate <= 0 | coolingRate >= 1)
+            {
+                appendTextBox("Cooling Rate has to be 0<x<1. Please choose a valid value.");
+                return;
+            }
+
+            String path = "";
+            // calculate new order
+            SimulatedAnnealingStrategy problem = new SimulatedAnnealingStrategy();
+            problem.setTemperature(temperature);
+            problem.setCoolingRate(coolingRate);
+            problem.setAbsoluteTemperature(absoluteTemperature);
+            problem.generateCurrentOrder();
+            problem.Anneal();
+
+            for (int i = 0; i < problem.CitiesOrder.Count - 1; i++)
+            {
+                path += problem.CitiesOrder[i] + " -> ";
+            }
+            path += problem.CitiesOrder[problem.CitiesOrder.Count - 1];
+
+            appendTextBox("Simulated Annealing ");
+            appendTextBox("Shortest Route: " + path);
+            appendTextBox("The shortest distance is: " + problem.ShortestDistance.ToString());
+
+
+            //Creates a list of Cities in Citypostions based on the given sorted node list.
+            CityPositions.getInstance().generateSortedRouteByGivenNodelist(problem.CitiesOrder);
+            redrawRouteOnChart();
+            displayRouteDistance(problem.ShortestDistance);
+            calculateThreadActive = false;
+        }
+
 
         private void calculateGreedyStrategy()
         {
@@ -105,61 +160,6 @@ namespace TSP
           
             calculateThreadActive = false;
 
-        }
-
-        private void calculateSimulatedAnnealing()
-        {
-            calculateThreadActive = true;
-            double temperature;
-            double coolingRate;
-            double absoluteTemperature;
-
-            try
-            {
-                temperature = (double)numTemperature.Value;
-                coolingRate = Convert.ToDouble(txtCoolingRate.Text);
-                absoluteTemperature = Convert.ToDouble(txtAbsoluteTemperature.Text);
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                appendTextBox("Your input wasn't valid!");
-                calculateThreadActive = false;
-                return;
-            }
-
-            if (coolingRate <= 0 | coolingRate >= 1)
-            {
-                appendTextBox("Cooling Rate has to be 1<x<0. Please choose a valid value.");
-                return;
-            }
-
-            String path = "";
-            // calculate new order
-            TravellingSalesmanProblem problem = new TravellingSalesmanProblem();
-            problem.setTemperature(temperature);
-            problem.setCoolingRate(coolingRate);
-            problem.setAbsoluteTemperature(absoluteTemperature);
-            problem.generateCurrentOrder();
-            problem.Anneal();
-
-            for (int i = 0; i < problem.CitiesOrder.Count - 1; i++)
-            {
-                path += problem.CitiesOrder[i] + " -> ";
-            }
-            path += problem.CitiesOrder[problem.CitiesOrder.Count - 1];
-
-            appendTextBox("Simulated Annealing ");
-            appendTextBox("Shortest Route: " + path);
-            appendTextBox("The shortest distance is: " + problem.ShortestDistance.ToString());
-
-
-            //Creates a list of Cities in Citypostions based on the given sorted node list.
-            CityPositions.getInstance().generateSortedRouteByGivenNodelist(problem.CitiesOrder);
-            redrawRouteOnChart();
-            displayRouteDistance(problem.ShortestDistance);
-            calculateThreadActive = false;
         }
 
         private void redrawRouteOnChart()
@@ -204,7 +204,7 @@ namespace TSP
                 chartCities.Series[0].Points.AddXY(city.getX(), city.getY());
                 chartCities.Series[0].Points[chartCities.Series[0].Points.Count - 1].Color = Color.Blue;
                 // add label
-                chartCities.Series[0].Points[chartCities.Series[0].Points.Count - 1].Label = city.getNode().ToString();
+                chartCities.Series[0].Points[chartCities.Series[0].Points.Count - 1].Label = city.getNodeId().ToString();
             }
         }
 
@@ -220,10 +220,7 @@ namespace TSP
                 checkedListBox.Items.Add(c);
             }
 
-            for (int i = 0; i < checkedListBox.Items.Count; i++)
-            {
-                checkedListBox.SetItemChecked(i, true);
-            }
+            selectAllCities();
 
             foreach (City c in checkedListBox.Items)
             {
@@ -232,6 +229,15 @@ namespace TSP
             displayRouteDistance();
 
         }
+
+        private void selectAllCities()
+        {
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                checkedListBox.SetItemChecked(i, true);
+            }
+        }
+
         private void updateRoute(City city)
         {
             CityPositions cityPostion = CityPositions.getInstance();
@@ -250,7 +256,7 @@ namespace TSP
             {
                 cityPostion.removeCityFromRoute(city);
 
-                chartCities.Series[0].Points[city.getNode()].Color = Color.Blue;
+                chartCities.Series[0].Points[city.getNodeId()].Color = Color.Blue;
 
                 // reload line graph
                 chartCities.Series[1].Points.Clear();
@@ -266,13 +272,13 @@ namespace TSP
                 }
 
                 // update check box
-                checkedListBox.SetItemChecked(city.getNode(), false);
+                checkedListBox.SetItemChecked(city.getNodeId(), false);
             }
             //add city
             else
             {
                 cityPostion.addCityToRoute(city);
-                chartCities.Series[0].Points[city.getNode()].Color = Color.Green;
+                chartCities.Series[0].Points[city.getNodeId()].Color = Color.Green;
                 // reload line graph
                 chartCities.Series[1].Points.Clear();
 
@@ -288,7 +294,7 @@ namespace TSP
                     chartCities.Series[1].Points.AddXY(cityPostion.getRouteNodeAt(0).getX(), cityPostion.getRouteNodeAt(0).getY());
                 }
 
-                checkedListBox.SetItemChecked(city.getNode(), true);
+                checkedListBox.SetItemChecked(city.getNodeId(), true);
             }
         }
 
@@ -381,15 +387,13 @@ namespace TSP
                     missingCities.Add(city);
             }
 
-            for (int i = 0; i < checkedListBox.Items.Count; i++)
-            {
-                checkedListBox.SetItemChecked(i, true);
-            }
+            selectAllCities();
 
             foreach (City city in missingCities)
             {
                 updateRoute(city);
             }
+
             displayRouteDistance();
 
         }

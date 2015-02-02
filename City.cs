@@ -10,11 +10,11 @@ namespace TSP
     {
         private double x;
         private double y;
-        private int node;
+        private int nodeId;
 
-        public City(int node, double x, double y)
+        public City(int nodeId, double x, double y)
         {
-            this.node = node;
+            this.nodeId = nodeId;
             this.x = x;
             this.y = y;
         }
@@ -39,20 +39,20 @@ namespace TSP
             this.y = y;
         }
 
-        public void setNode(int node)
+        public void setNodeId(int nodeId)
         {
-            this.node = node;
+            this.nodeId = nodeId;
         }
 
-        public int getNode()
+        public int getNodeId()
         {
-            return node;
+            return nodeId;
         }
 
         
         public override string ToString()
         {
-            return "Node:" + node + " X:" + x + " Y: " + y; 
+            return "Node:" + nodeId + " X:" + x + " Y: " + y; 
             
         }
 

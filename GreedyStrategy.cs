@@ -9,7 +9,7 @@ namespace TSP
     /**
      * Algorithm used the nearest neighour behaviour in order to get the local optimums.
      * */
-    class GreedyStrategy : TravellingSalesmanProblem
+    class GreedyStrategy : SimulatedAnnealingStrategy
     {
 
 
@@ -32,7 +32,7 @@ namespace TSP
                 if (currentNextCity == 0)
                 {
                     currentNextCity = localCities[0];
-                    nextOrder.Add(currentNextCity);
+                    nextRandomOrder.Add(currentNextCity);
                 }
 
                 for (int i = 0; i < localCities.Count; i++)
@@ -59,7 +59,7 @@ namespace TSP
                        
                         //save the possible next city if not already in the route
                         int city = localCitiesClean[j];
-                        if (!nextOrder.Contains(city))
+                        if (!nextRandomOrder.Contains(city))
                         {
                             minDistance = distance;
                             currentNextCity = city;
@@ -70,16 +70,16 @@ namespace TSP
 
               
                 //save the shortest city from the current in the list;
-                if (!nextOrder.Contains(currentNextCity))
+                if (!nextRandomOrder.Contains(currentNextCity))
                 {
-                    nextOrder.Add(currentNextCity);
+                    nextRandomOrder.Add(currentNextCity);
                 }
             }
 
 
-            for (int i = 0; i < nextOrder.Count; i++)
+            for (int i = 0; i < nextRandomOrder.Count; i++)
             {
-                currentOrder.Add(nextOrder[i]);
+                currentOrder.Add(nextRandomOrder[i]);
             }
 
 

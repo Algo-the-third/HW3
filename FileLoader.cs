@@ -24,11 +24,11 @@ namespace TSP
                    
                     string[] split = line.Split(' ');
                     
-                    int node = (int)Convert.ToDouble(split[0]) - 1;
+                    int nodeId = (int)Convert.ToDouble(split[0]) - 1;
                     double x = (double)Convert.ToDouble(split[1]);
                     double y = (double)Convert.ToDouble(split[2]);
 
-                    cityPositons.addCityNode(new City(node, x, y));
+                    cityPositons.addCityNode(new City(nodeId, x, y));
                                        
                 }
             }
