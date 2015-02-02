@@ -11,6 +11,11 @@ namespace TSP
 
         /// <summary>
         /// calculate distance between two cities via pythagoras
+        /// 
+        /// TODO pythagoras good enough or should we also consider the sphere characteristics of the earth?
+        /// -> see our WebApp project JumpUp for a possible solution: https://github.com/sasfeld/JumpUpReloaded/blob/ticket_357105/src/main/java/de/htw/fb4/imi/jumpup/util/math/CoordinateUtil.java
+        /// 
+        /// We should calculate the radians values.
         /// </summary>
         /// <param name="city1"></param>
         /// <param name="city2"></param>

@@ -74,39 +74,6 @@ namespace TSP
 
         }
 
-
-        private void calculateGreedyStrategy()
-        {
-            calculateThreadActive = true;
-            GreedyStrategy greedyStrategy = new GreedyStrategy();
-            greedyStrategy.generateCurrentOrder();
-            greedyStrategy.calculateNNRoute();
-
-            String path = "";
-
-            for (int i = 0; i < greedyStrategy.CitiesOrder.Count - 1; i++)
-            {
-                path += greedyStrategy.CitiesOrder[i] + " -> ";
-            }
-            path += greedyStrategy.CitiesOrder[greedyStrategy.CitiesOrder.Count - 1];
-
-            appendTextBox("Greedy Strategy");
-            appendTextBox("Shortest Route: " + path);
-
-            //Creates a list of Cities in Citypostions based on the given sorted node list.
-            CityPositions cityPostions = CityPositions.getInstance();
-            cityPostions.generateSortedRouteByGivenNodelist(greedyStrategy.CitiesOrder);
-            //Calculate current Route distance
-            Double currentRouteDistance = new Distance().calculateTotalRouteDistance(cityPostions.getSortedRoute());
-
-            appendTextBox("The shortest distance is: " + currentRouteDistance);
-            redrawRouteOnChart();
-            displayRouteDistance(currentRouteDistance);
-          
-            calculateThreadActive = false;
-
-        }
-
         private void calculateSimulatedAnnealing()
         {
             calculateThreadActive = true;
@@ -131,13 +98,13 @@ namespace TSP
 
             if (coolingRate <= 0 | coolingRate >= 1)
             {
-                appendTextBox("Cooling Rate has to be 1<x<0. Please choose a valid value.");
+                appendTextBox("Cooling Rate has to be 0<x<1. Please choose a valid value.");
                 return;
             }
 
             String path = "";
             // calculate new order
-            TravellingSalesmanProblem problem = new TravellingSalesmanProblem();
+            SimulatedAnnealingStrategy problem = new SimulatedAnnealingStrategy();
             problem.setTemperature(temperature);
             problem.setCoolingRate(coolingRate);
             problem.setAbsoluteTemperature(absoluteTemperature);
@@ -156,10 +123,43 @@ namespace TSP
 
 
             //Creates a list of Cities in Citypostions based on the given sorted node list.
-            CityPositions.getInstance().generateSortedRouteByGivenNodelist(problem.CitiesOrder);
+            CityPositions.getInstance().generateSortedRouteByGivenNodeIdlist(problem.CitiesOrder);
             redrawRouteOnChart();
             displayRouteDistance(problem.ShortestDistance);
             calculateThreadActive = false;
+        }
+
+
+        private void calculateGreedyStrategy()
+        {
+            calculateThreadActive = true;
+            GreedyStrategy greedyStrategy = new GreedyStrategy();
+            greedyStrategy.generateCurrentOrder();
+            greedyStrategy.calculateNNRoute();
+
+            String path = "";
+
+            for (int i = 0; i < greedyStrategy.CitiesOrder.Count - 1; i++)
+            {
+                path += greedyStrategy.CitiesOrder[i] + " -> ";
+            }
+            path += greedyStrategy.CitiesOrder[greedyStrategy.CitiesOrder.Count - 1];
+
+            appendTextBox("Greedy Strategy");
+            appendTextBox("Shortest Route: " + path);
+
+            //Creates a list of Cities in Citypostions based on the given sorted node list.
+            CityPositions cityPostions = CityPositions.getInstance();
+            cityPostions.generateSortedRouteByGivenNodeIdlist(greedyStrategy.CitiesOrder);
+            //Calculate current Route distance
+            Double currentRouteDistance = new Distance().calculateTotalRouteDistance(cityPostions.getSortedRoute());
+
+            appendTextBox("The shortest distance is: " + currentRouteDistance);
+            redrawRouteOnChart();
+            displayRouteDistance(currentRouteDistance);
+          
+            calculateThreadActive = false;
+
         }
 
         private void redrawRouteOnChart()
@@ -204,7 +204,7 @@ namespace TSP
                 chartCities.Series[0].Points.AddXY(city.getX(), city.getY());
                 chartCities.Series[0].Points[chartCities.Series[0].Points.Count - 1].Color = Color.Blue;
                 // add label
-                chartCities.Series[0].Points[chartCities.Series[0].Points.Count - 1].Label = city.getNode().ToString();
+                chartCities.Series[0].Points[chartCities.Series[0].Points.Count - 1].Label = city.getNodeId().ToString();
             }
         }
 
@@ -220,10 +220,7 @@ namespace TSP
                 checkedListBox.Items.Add(c);
             }
 
-            for (int i = 0; i < checkedListBox.Items.Count; i++)
-            {
-                checkedListBox.SetItemChecked(i, true);
-            }
+            selectAllCities();
 
             foreach (City c in checkedListBox.Items)
             {
@@ -232,6 +229,15 @@ namespace TSP
             displayRouteDistance();
 
         }
+
+        private void selectAllCities()
+        {
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                checkedListBox.SetItemChecked(i, true);
+            }
+        }
+
         private void updateRoute(City city)
         {
             CityPositions cityPostion = CityPositions.getInstance();
@@ -250,7 +256,7 @@ namespace TSP
             {
                 cityPostion.removeCityFromRoute(city);
 
-                chartCities.Series[0].Points[city.getNode()].Color = Color.Blue;
+                chartCities.Series[0].Points[city.getNodeId()].Color = Color.Blue;
 
                 // reload line graph
                 chartCities.Series[1].Points.Clear();
@@ -266,13 +272,13 @@ namespace TSP
                 }
 
                 // update check box
-                checkedListBox.SetItemChecked(city.getNode(), false);
+                checkedListBox.SetItemChecked(city.getNodeId(), false);
             }
             //add city
             else
             {
                 cityPostion.addCityToRoute(city);
-                chartCities.Series[0].Points[city.getNode()].Color = Color.Green;
+                chartCities.Series[0].Points[city.getNodeId()].Color = Color.Green;
                 // reload line graph
                 chartCities.Series[1].Points.Clear();
 
@@ -288,7 +294,7 @@ namespace TSP
                     chartCities.Series[1].Points.AddXY(cityPostion.getRouteNodeAt(0).getX(), cityPostion.getRouteNodeAt(0).getY());
                 }
 
-                checkedListBox.SetItemChecked(city.getNode(), true);
+                checkedListBox.SetItemChecked(city.getNodeId(), true);
             }
         }
 
@@ -381,15 +387,13 @@ namespace TSP
                     missingCities.Add(city);
             }
 
-            for (int i = 0; i < checkedListBox.Items.Count; i++)
-            {
-                checkedListBox.SetItemChecked(i, true);
-            }
+            selectAllCities();
 
             foreach (City city in missingCities)
             {
                 updateRoute(city);
             }
+
             displayRouteDistance();
 
         }
@@ -449,6 +453,23 @@ namespace TSP
             }
 
             resultTextBox.AppendText("\r\n" + value);
+        }
+
+        private void btnRandomRoute_Click(object sender, EventArgs e)
+        {
+            SimulatedAnnealingStrategy strategy = new SimulatedAnnealingStrategy();
+            strategy.generateCurrentOrder();
+            List<int> randomArrangement = strategy.GetNextRandomArrangement(strategy.CitiesOrder);
+
+            CityPositions.getInstance().generateSortedRouteByGivenNodeIdlist(randomArrangement);
+            Double currentRouteDistance = new Distance().calculateTotalRouteDistance(CityPositions.getInstance().getSortedRoute());
+
+            appendTextBox("Generating random route...");
+            appendTextBox("The random distance is " + currentRouteDistance);
+            redrawRouteOnChart();
+            displayRouteDistance(currentRouteDistance);
+
+            calculateThreadActive = false;
         }
 
     }

@@ -6,11 +6,12 @@ using System.IO;
 
 namespace TSP
 {
-    public class TravellingSalesmanProblem
+    public class SimulatedAnnealingStrategy
     {
         private string filePath;
         protected List<int> currentOrder = new List<int>();
-        protected List<int> nextOrder = new List<int>();
+
+        protected List<int> nextRandomOrder = new List<int>();
         protected double[,] distances;
         private Random random = new Random();
         protected double shortestDistance = 0;
@@ -36,19 +37,6 @@ namespace TSP
             this.currentOrder = currentOrder;
           
         }
-       
-
-        public string FilePath
-        {
-            get
-            {
-                return filePath;
-            }
-            set
-            {
-                filePath = value;
-            }
-        }
 
         public List<int> CitiesOrder
         {
@@ -62,43 +50,11 @@ namespace TSP
             }
         }
 
-        /// <summary>
-        /// Load cities from the text file representing the adjacency matrix
-        /// </summary>
-        private void LoadCities()
-        {
-            StreamReader reader = new StreamReader(filePath);
-
-            string cities = reader.ReadToEnd();
-
-            reader.Close();
-
-            string[] rows = cities.Split('\n');
-
-            distances = new double[rows.Length, rows.Length];
-
-            for (int i = 0; i < rows.Length; i++)
-            {
-                string[] distance = rows[i].Split(' ');
-                for (int j = 0; j < distance.Length; j++)
-                {
-                    distances[i, j] = double.Parse(distance[j]);
-                }
-
-                //the number of rows in this matrix represent the number of cities
-                //we are representing each city by an index from 0 to N - 1
-                //where N is the total number of cities
-                currentOrder.Add(i);
-            }
-
-            if (currentOrder.Count < 1)
-                throw new Exception("No cities to order.");
-        }
 
         /// <summary>
         /// Calculate the total distance which is the objective function
         /// </summary>
-        /// <param name="order">A list containing the order of cities</param>
+        /// <param name="order">A list containing the order of cities (nodeIds of City instances in CityPositions)</param>
         /// <returns></returns>
         protected double GetTotalDistance(List<int> order)
         {
@@ -106,12 +62,13 @@ namespace TSP
 
             for (int i = 0; i < order.Count - 1; i++)
             {
-                distance += distances[order[i], order[i + 1]];
+                distance += distances[i, i + 1];
             }
 
+            // add distance from last to first city
             if (order.Count > 0)
             {
-                distance += distances[order[order.Count - 1], 0];
+                distance += distances[order.Count - 1, 0];
             }
 
             return distance;
@@ -121,8 +78,8 @@ namespace TSP
         /// Get the next random arrangements of cities
         /// </summary>
         /// <param name="order"></param>
-        /// <returns></returns>
-        private List<int> GetNextArrangement(List<int> order)
+        /// <returns>List containing the nodeIds of City instances in the CityPositions collection.</returns>
+        public List<int> GetNextRandomArrangement(List<int> order)
         {
             List<int> newOrder = new List<int>();
 
@@ -174,22 +131,23 @@ namespace TSP
 
 
 
-            double distance = GetTotalDistance(currentOrder);
+            double currentDistance = GetTotalDistance(currentOrder);
 
             while (temperature > absoluteTemperature)
             {
-                nextOrder = GetNextArrangement(currentOrder);
+                nextRandomOrder = GetNextRandomArrangement(currentOrder);
 
-                deltaDistance = GetTotalDistance(nextOrder) - distance;
+                deltaDistance = GetTotalDistance(nextRandomOrder) - currentDistance;
 
                 //if the new order has a smaller distance
                 //or if the new order has a larger distance but satisfies Boltzman condition then accept the arrangement
-                if ((deltaDistance < 0) || (distance > 0 && Math.Exp(-deltaDistance / temperature) > random.NextDouble()))
+                if ((deltaDistance < 0) || (currentDistance > 0 && Math.Exp(-deltaDistance / temperature) > random.NextDouble()))
                 {
-                    for (int i = 0; i < nextOrder.Count; i++)
-                        currentOrder[i] = nextOrder[i];
+                    // store new order of cities on route
+                    for (int i = 0; i < nextRandomOrder.Count; i++)
+                        currentOrder[i] = nextRandomOrder[i];
 
-                    distance = deltaDistance + distance;
+                    currentDistance = deltaDistance + currentDistance;
                 }
 
                 //cool down the temperature
@@ -198,21 +156,23 @@ namespace TSP
                 iteration++;
             }
 
-            shortestDistance = distance;
+            shortestDistance = currentDistance;
         }
 
         /**
-         * New Method for calculation the distance matrix out of the existing route in CityPostions class.
+         * New Method for calculating the distance matrix out of the existing route in CityPostions class.
          * 
          */
         public void generateCurrentOrder()
         {
 
             List<City> route = CityPositions.getInstance().getRoute();
+            List<City> cities = CityPositions.getInstance().getCities();
 
             Distance distance = new Distance();
 
             int routeCount = route.Count;
+            int citiesCount = cities.Count;
 
             distances = new double[routeCount, routeCount];
 
@@ -226,7 +186,7 @@ namespace TSP
                 //the number of rows in this matrix represent the number of cities
                 //we are representing each city by an index from 0 to N - 1
                 //where N is the total number of cities
-                currentOrder.Add(i);
+                currentOrder.Add(route[i].getNodeId());
             }
 
             if (currentOrder.Count < 1)
