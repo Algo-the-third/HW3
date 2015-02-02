@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
@@ -59,6 +59,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.resultTextBox = new System.Windows.Forms.RichTextBox();
             this.btnRandomRoute = new System.Windows.Forms.Button();
+            this.numGenomeSize = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numMixingRatio = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartCities)).BeginInit();
             this.TabArea.SuspendLayout();
             this.annealingTab.SuspendLayout();
@@ -69,20 +73,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPopulationSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGenerationSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMutationRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGenomeSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMixingRatio)).BeginInit();
             this.SuspendLayout();
             // 
             // chartCities
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartCities.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartCities.Legends.Add(legend2);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartCities.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartCities.Series.Add(series2);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
@@ -91,7 +97,7 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(54, 726);
+            this.btnCalculate.Location = new System.Drawing.Point(53, 787);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(125, 32);
             this.btnCalculate.TabIndex = 1;
@@ -153,7 +159,7 @@
             this.TabArea.Location = new System.Drawing.Point(54, 596);
             this.TabArea.Name = "TabArea";
             this.TabArea.SelectedIndex = 0;
-            this.TabArea.Size = new System.Drawing.Size(294, 124);
+            this.TabArea.Size = new System.Drawing.Size(294, 185);
             this.TabArea.TabIndex = 7;
             // 
             // annealingTab
@@ -243,7 +249,7 @@
             this.greedyTab.Location = new System.Drawing.Point(4, 22);
             this.greedyTab.Name = "greedyTab";
             this.greedyTab.Padding = new System.Windows.Forms.Padding(3);
-            this.greedyTab.Size = new System.Drawing.Size(286, 98);
+            this.greedyTab.Size = new System.Drawing.Size(286, 159);
             this.greedyTab.TabIndex = 1;
             this.greedyTab.Text = "Greedy Strategy";
             this.greedyTab.UseVisualStyleBackColor = true;
@@ -259,6 +265,10 @@
             // 
             // geneticTab
             // 
+            this.geneticTab.Controls.Add(this.label11);
+            this.geneticTab.Controls.Add(this.numMixingRatio);
+            this.geneticTab.Controls.Add(this.label5);
+            this.geneticTab.Controls.Add(this.numGenomeSize);
             this.geneticTab.Controls.Add(this.numCrossoverRate);
             this.geneticTab.Controls.Add(this.numPopulationSize);
             this.geneticTab.Controls.Add(this.numGenerationSize);
@@ -269,17 +279,23 @@
             this.geneticTab.Controls.Add(this.label7);
             this.geneticTab.Location = new System.Drawing.Point(4, 22);
             this.geneticTab.Name = "geneticTab";
-            this.geneticTab.Size = new System.Drawing.Size(286, 98);
+            this.geneticTab.Size = new System.Drawing.Size(286, 159);
             this.geneticTab.TabIndex = 2;
             this.geneticTab.Text = "Genetic Algorithm";
             this.geneticTab.UseVisualStyleBackColor = true;
             // 
             // numCrossoverRate
             // 
+            this.numCrossoverRate.DecimalPlaces = 2;
             this.numCrossoverRate.Location = new System.Drawing.Point(173, 29);
             this.numCrossoverRate.Name = "numCrossoverRate";
             this.numCrossoverRate.Size = new System.Drawing.Size(64, 20);
             this.numCrossoverRate.TabIndex = 6;
+            this.numCrossoverRate.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            65536});
             // 
             // numPopulationSize
             // 
@@ -287,6 +303,11 @@
             this.numPopulationSize.Name = "numPopulationSize";
             this.numPopulationSize.Size = new System.Drawing.Size(64, 20);
             this.numPopulationSize.TabIndex = 5;
+            this.numPopulationSize.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             // 
             // numGenerationSize
             // 
@@ -294,13 +315,24 @@
             this.numGenerationSize.Name = "numGenerationSize";
             this.numGenerationSize.Size = new System.Drawing.Size(64, 20);
             this.numGenerationSize.TabIndex = 5;
+            this.numGenerationSize.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             // 
             // numMutationRate
             // 
+            this.numMutationRate.DecimalPlaces = 2;
             this.numMutationRate.Location = new System.Drawing.Point(20, 29);
             this.numMutationRate.Name = "numMutationRate";
             this.numMutationRate.Size = new System.Drawing.Size(64, 20);
             this.numMutationRate.TabIndex = 4;
+            this.numMutationRate.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
             // 
             // label10
             // 
@@ -342,7 +374,7 @@
             // 
             this.resultTextBox.Location = new System.Drawing.Point(376, 466);
             this.resultTextBox.Name = "resultTextBox";
-            this.resultTextBox.Size = new System.Drawing.Size(476, 292);
+            this.resultTextBox.Size = new System.Drawing.Size(476, 311);
             this.resultTextBox.TabIndex = 8;
             this.resultTextBox.Text = "";
             // 
@@ -356,11 +388,49 @@
             this.btnRandomRoute.UseVisualStyleBackColor = true;
             this.btnRandomRoute.Click += new System.EventHandler(this.btnRandomRoute_Click);
             // 
+            // numGenomeSize
+            // 
+            this.numGenomeSize.Location = new System.Drawing.Point(20, 119);
+            this.numGenomeSize.Name = "numGenomeSize";
+            this.numGenomeSize.Size = new System.Drawing.Size(64, 20);
+            this.numGenomeSize.TabIndex = 10;
+            this.numGenomeSize.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(17, 103);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Genome Size";
+            // 
+            // numMixingRatio
+            // 
+            this.numMixingRatio.DecimalPlaces = 2;
+            this.numMixingRatio.Location = new System.Drawing.Point(173, 119);
+            this.numMixingRatio.Name = "numMixingRatio";
+            this.numMixingRatio.Size = new System.Drawing.Size(64, 20);
+            this.numMixingRatio.TabIndex = 11;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(170, 103);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 13);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Mixing Ratio";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(915, 792);
+            this.ClientSize = new System.Drawing.Size(915, 849);
             this.Controls.Add(this.btnRandomRoute);
             this.Controls.Add(this.resultTextBox);
             this.Controls.Add(this.TabArea);
@@ -386,6 +456,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPopulationSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGenerationSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMutationRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGenomeSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMixingRatio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,6 +493,10 @@
         private System.Windows.Forms.TextBox txtAbsoluteTemperature;
         private System.Windows.Forms.TextBox txtCoolingRate;
         private System.Windows.Forms.Button btnRandomRoute;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown numMixingRatio;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numGenomeSize;
     }
 }
 

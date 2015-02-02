@@ -43,32 +43,29 @@ namespace TSP
         {
 
             String mode = TabArea.SelectedTab.Text;
+
+            if (calculateThreadActive)
+            {
+                appendTextBox("There is an other calculation process active please wait.");
+                return;
+            }
+
             switch (mode)
             {
                 case "Simulated Annealing":
-                    {
-                        if (calculateThreadActive)
-                        {
-                            appendTextBox("There is an other calculation process active please wait.");
-                            return;
-                        }
+                    {                       
                         new Thread(calculateSimulatedAnnealing).Start();
-
                     }
                     break;
                 case "Greedy Strategy":
                     {
-                        if (calculateThreadActive)
-                        {
-                            appendTextBox("There is an other calculation process active please wait.");
-                            return;
-                        }
                         new Thread(calculateGreedyStrategy).Start();
-
                     }
                     break;
                 case "Genetic Algorithm":
-                    { }
+                    {
+                        new Thread(calculateGeneticAlgorithm).Start();
+                    }
                     break;
             }
 
@@ -160,6 +157,39 @@ namespace TSP
           
             calculateThreadActive = false;
 
+        }
+
+        private void calculateGeneticAlgorithm()
+        {
+            calculateThreadActive = true;
+
+            try
+            {
+                double crossoverRate = Convert.ToDouble(numCrossoverRate.Value);
+                double mutationRate = Convert.ToDouble(numMutationRate.Value);
+                int populationSize = Convert.ToInt32(numPopulationSize.Value);
+                int generationSize = Convert.ToInt32(numGenerationSize.Value);
+                int genomeSize = Convert.ToInt32(numGenomeSize.Value);
+                //double mixingRatio = Convert.ToDouble(numMixingRatio.Value);
+
+                GeneticAlgorithmStrategy geneticStrategy = new GeneticAlgorithmStrategy();
+                geneticStrategy.generateCurrentOrder();
+
+                geneticStrategy.doGenetics(crossoverRate, mutationRate, populationSize, generationSize, genomeSize);
+
+                appendTextBox("Genetic Algorithm Strategy");
+                appendTextBox("Best fitness:" + geneticStrategy.getBestFitness());
+                appendTextBox("Best values:" + Util.toString(geneticStrategy.getBestValues(), ", "));
+                appendTextBox("Worst fitness:" + geneticStrategy.getWorstFitness());
+                appendTextBox("Worst values:" + Util.toString(geneticStrategy.getWorstValues(), ", "));
+            }
+            catch (InvalidCastException e)
+            {
+                appendTextBox("Please type in valid numbers.");
+            }
+
+
+            calculateThreadActive = false;
         }
 
         private void redrawRouteOnChart()
