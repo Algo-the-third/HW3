@@ -58,13 +58,13 @@ namespace TSP
                 case "Simulated Annealing":
                     {                       
                         new Thread(calculateSimulatedAnnealing).Start();
-                        new Thread(showProgressOnLabel).Start();
+                       
                     }
                     break;
                 case "Greedy Strategy":
                     {
                         new Thread(calculateGreedyStrategy).Start();
-                        new Thread(showProgressOnLabel).Start();
+                       
                     }
                     break;
                 case "Genetic Algorithm":
