@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnSelectNone = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.distanceLabel = new System.Windows.Forms.Label();
             this.TabArea = new System.Windows.Forms.TabControl();
             this.annealingTab = new System.Windows.Forms.TabPage();
             this.txtAbsoluteTemperature = new System.Windows.Forms.TextBox();
@@ -67,6 +66,7 @@
             this.resultTextBox = new System.Windows.Forms.RichTextBox();
             this.btnRandomRoute = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
+            this.distanceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartCities)).BeginInit();
             this.TabArea.SuspendLayout();
             this.annealingTab.SuspendLayout();
@@ -84,16 +84,16 @@
             // 
             // chartCities
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartCities.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartCities.Legends.Add(legend2);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartCities.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartCities.Series.Add(series2);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
@@ -137,14 +137,6 @@
             this.label1.Size = new System.Drawing.Size(84, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Route Distance:";
-            // 
-            // distanceLabel
-            // 
-            this.distanceLabel.AutoSize = true;
-            this.distanceLabel.Location = new System.Drawing.Point(224, 491);
-            this.distanceLabel.Name = "distanceLabel";
-            this.distanceLabel.Size = new System.Drawing.Size(0, 13);
-            this.distanceLabel.TabIndex = 6;
             // 
             // TabArea
             // 
@@ -504,16 +496,24 @@
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
+            // distanceLabel
+            // 
+            this.distanceLabel.AutoSize = true;
+            this.distanceLabel.Location = new System.Drawing.Point(225, 541);
+            this.distanceLabel.Name = "distanceLabel";
+            this.distanceLabel.Size = new System.Drawing.Size(0, 13);
+            this.distanceLabel.TabIndex = 11;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 742);
+            this.Controls.Add(this.distanceLabel);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.btnRandomRoute);
             this.Controls.Add(this.resultTextBox);
             this.Controls.Add(this.TabArea);
-            this.Controls.Add(this.distanceLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSelectNone);
             this.Controls.Add(this.btnSelectAll);
@@ -550,7 +550,7 @@
         private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.Button btnSelectNone;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label distanceLabel;
+        
         private System.Windows.Forms.TabControl TabArea;
         private System.Windows.Forms.TabPage annealingTab;
         private System.Windows.Forms.TabPage greedyTab;
@@ -581,6 +581,7 @@
         private System.Windows.Forms.NumericUpDown numElitismRatio;
         private System.Windows.Forms.CheckBox elitismCheckbox;
         private System.Windows.Forms.Label elistimRate;
+        private System.Windows.Forms.Label distanceLabel;
     }
 }
 

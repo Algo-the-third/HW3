@@ -492,6 +492,11 @@ namespace TSP
 
         private void displayRouteDistance()
         {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action(displayRouteDistance), new object[] { });
+                return;
+            }
             distanceLabel.Text = new Distance().calculateTotalRouteDistance() + "";
         }
 

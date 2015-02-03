@@ -45,36 +45,17 @@ namespace TSP
             currentOrder = new List<int>();
 
             int currentNextCity = 0;
-            while (!(cityOrder.Count == 0))
+            int counter = 0;
+            while (counter < cityOrder.Count)
             {
-
-                int indexToRemove = 0;
-                if (currentNextCity == 0)
-                {
-                    currentNextCity = localCities[0];
-                    nextRandomOrder.Add(currentNextCity);
-                }
-
-                for (int i = 0; i < cityOrder.Count; i++)
-                {
-
-                    if (localCities[i] == currentNextCity)
-                    {
-                        indexToRemove = i;
-                        break;
-                    }
-                }
-
-                cityOrder.RemoveAt(indexToRemove);
-
-               
+             
                 double minDistance = 99999;
                 for (int j = 0; j < cityOrder.Count; j++)
                 {
                     //Look for the current City distances for each city 
                     double distance = cityOrder[j];
                     //Look for shorter or equal distance to the next city 
-                    if (distance <= minDistance & distance != 0)
+                    if (distance <= minDistance )
                     {
                         int city = localCities[j];
                         if (!nextRandomOrder.Contains(city))
@@ -85,13 +66,9 @@ namespace TSP
                     }
 
                 }
-
-              
-                //save the shortest city from the current in the list;
-                if (!nextRandomOrder.Contains(currentNextCity))
-                {
                     nextRandomOrder.Add(currentNextCity);
-                }
+                    counter++;
+                
             }
 
 
