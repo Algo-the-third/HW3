@@ -20,6 +20,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 namespace btl.generic
@@ -32,6 +33,7 @@ namespace btl.generic
 	/// </summary>
 	public class GA
 	{
+        private int elitismRate;
 		/// <summary>
 		/// Default constructor sets mutation rate to 5%, crossover to 80%, population to 100,
 		/// and generations to 2000.
@@ -69,7 +71,10 @@ namespace btl.generic
 			m_elitism = false;
 		}
 
-
+        public void setElisitmMode(Boolean mode)
+        {
+            m_elitism = mode;
+        }
 		/// <summary>
 		/// Method which starts the GA executing.
 		/// </summary>
@@ -186,12 +191,24 @@ namespace btl.generic
 			}
 		}
 
+
+        public void setElistimRate(int elitismRate)
+        {
+            this.elitismRate = elitismRate;
+        }
 		private void CreateNextGeneration()
 		{
 			m_nextGeneration.Clear();
-			Genome g = null;
-			if (m_elitism)
-				g = (Genome)m_thisGeneration[m_populationSize - 1];
+			
+            List<Genome> genomeList = new List<Genome>();
+            if (m_elitism)
+            {
+                for (int i = 1; i <= elitismRate; i++)
+                {
+                    genomeList.Add((Genome)m_thisGeneration[m_populationSize - i]);
+                }
+                
+            }
 
 			for (int i = 0 ; i < m_populationSize ; i+=2)
 			{
@@ -216,8 +233,14 @@ namespace btl.generic
 				m_nextGeneration.Add(child1);
 				m_nextGeneration.Add(child2);
 			}
-			if (m_elitism && g != null)
-				m_nextGeneration[0] = g;
+            if (m_elitism & genomeList.Count > 0)
+            {
+                for (int i = 0; i < genomeList.Count; i++)
+                {
+                    m_nextGeneration[i] = genomeList[i];
+                }
+            }
+				
 
 			m_thisGeneration.Clear();
 			for (int i = 0 ; i < m_populationSize; i++)

@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnCalculate = new System.Windows.Forms.Button();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnSelectNone = new System.Windows.Forms.Button();
@@ -49,6 +48,12 @@
             this.greedyTab = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.geneticTab = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.numElitismRatio = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.numMixingRatio = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numGenomeSize = new System.Windows.Forms.NumericUpDown();
             this.numCrossoverRate = new System.Windows.Forms.NumericUpDown();
             this.numPopulationSize = new System.Windows.Forms.NumericUpDown();
             this.numGenerationSize = new System.Windows.Forms.NumericUpDown();
@@ -59,51 +64,41 @@
             this.label7 = new System.Windows.Forms.Label();
             this.resultTextBox = new System.Windows.Forms.RichTextBox();
             this.btnRandomRoute = new System.Windows.Forms.Button();
-            this.numGenomeSize = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.numMixingRatio = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
+            this.btnCalculate = new System.Windows.Forms.Button();
+            this.elitismCheckbox = new System.Windows.Forms.CheckBox();
+            this.elistimRate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartCities)).BeginInit();
             this.TabArea.SuspendLayout();
             this.annealingTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTemperature)).BeginInit();
             this.greedyTab.SuspendLayout();
             this.geneticTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numElitismRatio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMixingRatio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGenomeSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCrossoverRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPopulationSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGenerationSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMutationRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGenomeSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMixingRatio)).BeginInit();
             this.SuspendLayout();
             // 
             // chartCities
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartCities.Legends.Add(legend2);
+            chartArea5.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chartCities.Legends.Add(legend5);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartCities.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chartCities.Series.Add(series5);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
             this.chartCities.Click += new System.EventHandler(this.chartCities_Click);
             this.chartCities.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chartCities_MouseMove);
-            // 
-            // btnCalculate
-            // 
-            this.btnCalculate.Location = new System.Drawing.Point(53, 787);
-            this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(125, 32);
-            this.btnCalculate.TabIndex = 1;
-            this.btnCalculate.Text = "Calculate";
-            this.btnCalculate.UseVisualStyleBackColor = true;
-            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // checkedListBox
             // 
@@ -137,7 +132,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(224, 550);
+            this.label1.Location = new System.Drawing.Point(225, 519);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 13);
             this.label1.TabIndex = 5;
@@ -156,10 +151,10 @@
             this.TabArea.Controls.Add(this.annealingTab);
             this.TabArea.Controls.Add(this.greedyTab);
             this.TabArea.Controls.Add(this.geneticTab);
-            this.TabArea.Location = new System.Drawing.Point(54, 596);
+            this.TabArea.Location = new System.Drawing.Point(53, 574);
             this.TabArea.Name = "TabArea";
             this.TabArea.SelectedIndex = 0;
-            this.TabArea.Size = new System.Drawing.Size(294, 185);
+            this.TabArea.Size = new System.Drawing.Size(311, 174);
             this.TabArea.TabIndex = 7;
             // 
             // annealingTab
@@ -173,7 +168,7 @@
             this.annealingTab.Location = new System.Drawing.Point(4, 22);
             this.annealingTab.Name = "annealingTab";
             this.annealingTab.Padding = new System.Windows.Forms.Padding(3);
-            this.annealingTab.Size = new System.Drawing.Size(286, 98);
+            this.annealingTab.Size = new System.Drawing.Size(286, 148);
             this.annealingTab.TabIndex = 0;
             this.annealingTab.Text = "Simulated Annealing";
             this.annealingTab.UseVisualStyleBackColor = true;
@@ -249,7 +244,7 @@
             this.greedyTab.Location = new System.Drawing.Point(4, 22);
             this.greedyTab.Name = "greedyTab";
             this.greedyTab.Padding = new System.Windows.Forms.Padding(3);
-            this.greedyTab.Size = new System.Drawing.Size(286, 159);
+            this.greedyTab.Size = new System.Drawing.Size(286, 148);
             this.greedyTab.TabIndex = 1;
             this.greedyTab.Text = "Greedy Strategy";
             this.greedyTab.UseVisualStyleBackColor = true;
@@ -265,6 +260,10 @@
             // 
             // geneticTab
             // 
+            this.geneticTab.Controls.Add(this.elistimRate);
+            this.geneticTab.Controls.Add(this.elitismCheckbox);
+            this.geneticTab.Controls.Add(this.label12);
+            this.geneticTab.Controls.Add(this.numElitismRatio);
             this.geneticTab.Controls.Add(this.label11);
             this.geneticTab.Controls.Add(this.numMixingRatio);
             this.geneticTab.Controls.Add(this.label5);
@@ -279,27 +278,107 @@
             this.geneticTab.Controls.Add(this.label7);
             this.geneticTab.Location = new System.Drawing.Point(4, 22);
             this.geneticTab.Name = "geneticTab";
-            this.geneticTab.Size = new System.Drawing.Size(286, 159);
+            this.geneticTab.Size = new System.Drawing.Size(303, 148);
             this.geneticTab.TabIndex = 2;
             this.geneticTab.Text = "Genetic Algorithm";
             this.geneticTab.UseVisualStyleBackColor = true;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(201, 55);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(84, 13);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "Elisitm Genomes";
+            // 
+            // numElitismRatio
+            // 
+            this.numElitismRatio.Location = new System.Drawing.Point(204, 71);
+            this.numElitismRatio.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numElitismRatio.Name = "numElitismRatio";
+            this.numElitismRatio.Size = new System.Drawing.Size(64, 20);
+            this.numElitismRatio.TabIndex = 13;
+            this.numElitismRatio.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numElitismRatio.ValueChanged += new System.EventHandler(this.numElitismRatio_ValueChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(116, 99);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 13);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Mixing Ratio";
+            // 
+            // numMixingRatio
+            // 
+            this.numMixingRatio.DecimalPlaces = 2;
+            this.numMixingRatio.Location = new System.Drawing.Point(119, 115);
+            this.numMixingRatio.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numMixingRatio.Name = "numMixingRatio";
+            this.numMixingRatio.Size = new System.Drawing.Size(64, 20);
+            this.numMixingRatio.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(17, 99);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Genome Size";
+            // 
+            // numGenomeSize
+            // 
+            this.numGenomeSize.Location = new System.Drawing.Point(20, 115);
+            this.numGenomeSize.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numGenomeSize.Name = "numGenomeSize";
+            this.numGenomeSize.Size = new System.Drawing.Size(64, 20);
+            this.numGenomeSize.TabIndex = 10;
+            this.numGenomeSize.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
             // numCrossoverRate
             // 
             this.numCrossoverRate.DecimalPlaces = 2;
-            this.numCrossoverRate.Location = new System.Drawing.Point(173, 29);
+            this.numCrossoverRate.Location = new System.Drawing.Point(119, 29);
             this.numCrossoverRate.Name = "numCrossoverRate";
             this.numCrossoverRate.Size = new System.Drawing.Size(64, 20);
             this.numCrossoverRate.TabIndex = 6;
             this.numCrossoverRate.Value = new decimal(new int[] {
-            7,
+            80,
             0,
             0,
-            65536});
+            0});
             // 
             // numPopulationSize
             // 
             this.numPopulationSize.Location = new System.Drawing.Point(20, 71);
+            this.numPopulationSize.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.numPopulationSize.Name = "numPopulationSize";
             this.numPopulationSize.Size = new System.Drawing.Size(64, 20);
             this.numPopulationSize.TabIndex = 5;
@@ -308,15 +387,21 @@
             0,
             0,
             0});
+            this.numPopulationSize.ValueChanged += new System.EventHandler(this.numPopulationSize_ValueChanged);
             // 
             // numGenerationSize
             // 
-            this.numGenerationSize.Location = new System.Drawing.Point(173, 71);
+            this.numGenerationSize.Location = new System.Drawing.Point(119, 71);
+            this.numGenerationSize.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numGenerationSize.Name = "numGenerationSize";
             this.numGenerationSize.Size = new System.Drawing.Size(64, 20);
             this.numGenerationSize.TabIndex = 5;
             this.numGenerationSize.Value = new decimal(new int[] {
-            100,
+            2000,
             0,
             0,
             0});
@@ -329,7 +414,7 @@
             this.numMutationRate.Size = new System.Drawing.Size(64, 20);
             this.numMutationRate.TabIndex = 4;
             this.numMutationRate.Value = new decimal(new int[] {
-            25,
+            500,
             0,
             0,
             131072});
@@ -337,7 +422,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(170, 55);
+            this.label10.Location = new System.Drawing.Point(116, 55);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(82, 13);
             this.label10.TabIndex = 3;
@@ -355,26 +440,26 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(170, 13);
+            this.label8.Location = new System.Drawing.Point(116, 13);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 13);
+            this.label8.Size = new System.Drawing.Size(102, 13);
             this.label8.TabIndex = 1;
-            this.label8.Text = "Crossover Rate";
+            this.label8.Text = "Crossover Rate in %";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(17, 13);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 13);
+            this.label7.Size = new System.Drawing.Size(96, 13);
             this.label7.TabIndex = 0;
-            this.label7.Text = "Mutation Rate";
+            this.label7.Text = "Mutation Rate in %";
             // 
             // resultTextBox
             // 
-            this.resultTextBox.Location = new System.Drawing.Point(376, 466);
+            this.resultTextBox.Location = new System.Drawing.Point(370, 399);
             this.resultTextBox.Name = "resultTextBox";
-            this.resultTextBox.Size = new System.Drawing.Size(476, 311);
+            this.resultTextBox.Size = new System.Drawing.Size(498, 295);
             this.resultTextBox.TabIndex = 8;
             this.resultTextBox.Text = "";
             // 
@@ -388,49 +473,42 @@
             this.btnRandomRoute.UseVisualStyleBackColor = true;
             this.btnRandomRoute.Click += new System.EventHandler(this.btnRandomRoute_Click);
             // 
-            // numGenomeSize
+            // btnCalculate
             // 
-            this.numGenomeSize.Location = new System.Drawing.Point(20, 119);
-            this.numGenomeSize.Name = "numGenomeSize";
-            this.numGenomeSize.Size = new System.Drawing.Size(64, 20);
-            this.numGenomeSize.TabIndex = 10;
-            this.numGenomeSize.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
+            this.btnCalculate.Location = new System.Drawing.Point(370, 700);
+            this.btnCalculate.Name = "btnCalculate";
+            this.btnCalculate.Size = new System.Drawing.Size(153, 31);
+            this.btnCalculate.TabIndex = 10;
+            this.btnCalculate.Text = "Calculate";
+            this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
-            // label5
+            // elitismCheckbox
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 103);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Genome Size";
+            this.elitismCheckbox.AutoSize = true;
+            this.elitismCheckbox.Checked = true;
+            this.elitismCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.elitismCheckbox.Location = new System.Drawing.Point(204, 35);
+            this.elitismCheckbox.Name = "elitismCheckbox";
+            this.elitismCheckbox.Size = new System.Drawing.Size(96, 17);
+            this.elitismCheckbox.TabIndex = 14;
+            this.elitismCheckbox.Text = "activate Elistim";
+            this.elitismCheckbox.UseVisualStyleBackColor = true;
             // 
-            // numMixingRatio
+            // elistimRate
             // 
-            this.numMixingRatio.DecimalPlaces = 2;
-            this.numMixingRatio.Location = new System.Drawing.Point(173, 119);
-            this.numMixingRatio.Name = "numMixingRatio";
-            this.numMixingRatio.Size = new System.Drawing.Size(64, 20);
-            this.numMixingRatio.TabIndex = 11;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(170, 103);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 13);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "Mixing Ratio";
+            this.elistimRate.AutoSize = true;
+            this.elistimRate.Location = new System.Drawing.Point(201, 99);
+            this.elistimRate.Name = "elistimRate";
+            this.elistimRate.Size = new System.Drawing.Size(0, 13);
+            this.elistimRate.TabIndex = 15;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(915, 849);
+            this.ClientSize = new System.Drawing.Size(917, 750);
+            this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.btnRandomRoute);
             this.Controls.Add(this.resultTextBox);
             this.Controls.Add(this.TabArea);
@@ -439,7 +517,6 @@
             this.Controls.Add(this.btnSelectNone);
             this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.checkedListBox);
-            this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.chartCities);
             this.Name = "MainForm";
             this.Text = "TCP - Winterterm 2014/15 - Felix Griewald, Sascha Feldmann, Marco Seidler";
@@ -452,12 +529,13 @@
             this.greedyTab.PerformLayout();
             this.geneticTab.ResumeLayout(false);
             this.geneticTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numElitismRatio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMixingRatio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGenomeSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCrossoverRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPopulationSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGenerationSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMutationRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numGenomeSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMixingRatio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -466,7 +544,7 @@
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCities;
-        private System.Windows.Forms.Button btnCalculate;
+
         private System.Windows.Forms.CheckedListBox checkedListBox;
         private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.Button btnSelectNone;
@@ -497,6 +575,11 @@
         private System.Windows.Forms.NumericUpDown numMixingRatio;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numGenomeSize;
+        private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.NumericUpDown numElitismRatio;
+        private System.Windows.Forms.CheckBox elitismCheckbox;
+        private System.Windows.Forms.Label elistimRate;
     }
 }
 

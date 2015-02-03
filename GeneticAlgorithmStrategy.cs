@@ -32,12 +32,15 @@ namespace TSP
             return w; 
         }
 
-        public void doGenetics(double crossoverRate, double mutationRate, int populationSize, int generationSize, int genomeSize)
+        public void doGenetics(double crossoverRate, double mutationRate, int populationSize, int generationSize, int genomeSize, Boolean elitism, int elitismRate)
         {
             // TODO where to handle startPopulation genomes??
             ArrayList startPopulation = createStartPopulation(populationSize);
 
             GA geneticAlgoritm = new GA(crossoverRate, mutationRate, populationSize, generationSize, genomeSize);
+            geneticAlgoritm.setElisitmMode(elitism);
+            geneticAlgoritm.setElistimRate(elitismRate);
+
             geneticAlgoritm.FitnessFunction = new GAFunction(this.fitnessFunction);
            
             geneticAlgoritm.Go();

@@ -8,7 +8,7 @@ namespace TSP
 {
     public class SimulatedAnnealingStrategy
     {
-        private string filePath;
+        
         /**
          * Dictionary of key nodeId -> internal mapping in currentOrder list.
          **/

@@ -32,7 +32,7 @@ namespace TSP
             new FileLoader().loadPostions();
             displayCitiesOnChart();
             displayCitiesInCheckBox();
-
+            numElitismRatio_ValueChanged(null,null);
 
         }
 
@@ -170,12 +170,15 @@ namespace TSP
                 int populationSize = Convert.ToInt32(numPopulationSize.Value);
                 int generationSize = Convert.ToInt32(numGenerationSize.Value);
                 int genomeSize = Convert.ToInt32(numGenomeSize.Value);
+                int elisitmSize = Convert.ToInt32(numElitismRatio.Value);
                 //double mixingRatio = Convert.ToDouble(numMixingRatio.Value);
+                Boolean elitismMode = elitismCheckbox.Checked;
+              
 
                 GeneticAlgorithmStrategy geneticStrategy = new GeneticAlgorithmStrategy();
                 geneticStrategy.generateCurrentOrder();
 
-                geneticStrategy.doGenetics(crossoverRate, mutationRate, populationSize, generationSize, genomeSize);
+                geneticStrategy.doGenetics(crossoverRate, mutationRate, populationSize, generationSize, genomeSize, elitismMode, elisitmSize);
 
                 appendTextBox("Genetic Algorithm Strategy");
                 appendTextBox("Best fitness:" + geneticStrategy.getBestFitness());
@@ -185,11 +188,15 @@ namespace TSP
             }
             catch (InvalidCastException e)
             {
+                Console.WriteLine(e);
                 appendTextBox("Please type in valid numbers.");
             }
 
-
-            calculateThreadActive = false;
+            finally
+            {
+                //to prevent deadlock by conrurrency
+                calculateThreadActive = false;
+            }
         }
 
         private void redrawRouteOnChart()
@@ -502,6 +509,23 @@ namespace TSP
             calculateThreadActive = false;
         }
 
+        private void numElitismRatio_ValueChanged(object sender, EventArgs e)
+        {
+
+            double populationSize = Convert.ToDouble(numPopulationSize.Value);
+            double elisitmSize = Convert.ToDouble(numElitismRatio.Value);
+
+            double percent = elisitmSize / (populationSize / 100);
+
+            elistimRate.Text = percent+"\r\n% of the population.";
+        }
+
+        private void numPopulationSize_ValueChanged(object sender, EventArgs e)
+        {
+            numElitismRatio_ValueChanged(null, null);
+        }
+
+    
     }
 
 }
