@@ -33,6 +33,7 @@ namespace TSP
             displayCitiesOnChart();
             displayCitiesInCheckBox();
             numElitismRatio_ValueChanged(null,null);
+            numGenomeSize.Value = CityPositions.getInstance().getRouteCount();
 
         }
 
@@ -288,6 +289,7 @@ namespace TSP
                 updateRoute(c);
             }
             displayRouteDistance();
+            numGenomeSize.Value = CityPositions.getInstance().getRouteCount();
 
         }
 
@@ -297,6 +299,7 @@ namespace TSP
             {
                 checkedListBox.SetItemChecked(i, true);
             }
+            numGenomeSize.Value = CityPositions.getInstance().getRouteCount();
         }
 
         private void updateRoute(City city)
@@ -357,6 +360,7 @@ namespace TSP
 
                 checkedListBox.SetItemChecked(city.getNodeId(), true);
             }
+            numGenomeSize.Value = CityPositions.getInstance().getRouteCount();
         }
 
         private void checkedListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -366,7 +370,7 @@ namespace TSP
             updateRoute(selectedCity);
 
             displayRouteDistance();
-
+            numGenomeSize.Value = CityPositions.getInstance().getRouteCount();
 
         }
 
@@ -379,6 +383,7 @@ namespace TSP
                 updateRoute(getCityAtPostion(currentDataPoint));
                 displayRouteDistance();
             }
+
         }
 
 
@@ -456,6 +461,7 @@ namespace TSP
             }
 
             displayRouteDistance();
+            numGenomeSize.Value = CityPositions.getInstance().getRouteCount();
 
         }
 
@@ -479,6 +485,7 @@ namespace TSP
                 updateRoute(city);
             }
             displayRouteDistance();
+            numGenomeSize.Value = CityPositions.getInstance().getRouteCount();
 
         }
 
@@ -529,7 +536,7 @@ namespace TSP
             appendTextBox("The random distance is " + currentRouteDistance);
             redrawRouteOnChart();
             displayRouteDistance(currentRouteDistance);
-
+            numGenomeSize.Value = CityPositions.getInstance().getRouteCount();
             calculateThreadActive = false;
         }
 

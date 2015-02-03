@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
@@ -48,6 +48,8 @@
             this.greedyTab = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.geneticTab = new System.Windows.Forms.TabPage();
+            this.elistimRate = new System.Windows.Forms.Label();
+            this.elitismCheckbox = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.numElitismRatio = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
@@ -65,8 +67,6 @@
             this.resultTextBox = new System.Windows.Forms.RichTextBox();
             this.btnRandomRoute = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
-            this.elitismCheckbox = new System.Windows.Forms.CheckBox();
-            this.elistimRate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartCities)).BeginInit();
             this.TabArea.SuspendLayout();
             this.annealingTab.SuspendLayout();
@@ -84,16 +84,16 @@
             // 
             // chartCities
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chartCities.Legends.Add(legend6);
+            chartArea1.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartCities.Legends.Add(legend1);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chartCities.Series.Add(series6);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartCities.Series.Add(series1);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
@@ -168,7 +168,7 @@
             this.annealingTab.Location = new System.Drawing.Point(4, 22);
             this.annealingTab.Name = "annealingTab";
             this.annealingTab.Padding = new System.Windows.Forms.Padding(3);
-            this.annealingTab.Size = new System.Drawing.Size(286, 148);
+            this.annealingTab.Size = new System.Drawing.Size(303, 148);
             this.annealingTab.TabIndex = 0;
             this.annealingTab.Text = "Simulated Annealing";
             this.annealingTab.UseVisualStyleBackColor = true;
@@ -244,7 +244,7 @@
             this.greedyTab.Location = new System.Drawing.Point(4, 22);
             this.greedyTab.Name = "greedyTab";
             this.greedyTab.Padding = new System.Windows.Forms.Padding(3);
-            this.greedyTab.Size = new System.Drawing.Size(286, 148);
+            this.greedyTab.Size = new System.Drawing.Size(303, 148);
             this.greedyTab.TabIndex = 1;
             this.greedyTab.Text = "Greedy Strategy";
             this.greedyTab.UseVisualStyleBackColor = true;
@@ -282,6 +282,26 @@
             this.geneticTab.TabIndex = 2;
             this.geneticTab.Text = "Genetic Algorithm";
             this.geneticTab.UseVisualStyleBackColor = true;
+            // 
+            // elistimRate
+            // 
+            this.elistimRate.AutoSize = true;
+            this.elistimRate.Location = new System.Drawing.Point(201, 99);
+            this.elistimRate.Name = "elistimRate";
+            this.elistimRate.Size = new System.Drawing.Size(0, 13);
+            this.elistimRate.TabIndex = 15;
+            // 
+            // elitismCheckbox
+            // 
+            this.elitismCheckbox.AutoSize = true;
+            this.elitismCheckbox.Checked = true;
+            this.elitismCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.elitismCheckbox.Location = new System.Drawing.Point(204, 35);
+            this.elitismCheckbox.Name = "elitismCheckbox";
+            this.elitismCheckbox.Size = new System.Drawing.Size(96, 17);
+            this.elitismCheckbox.TabIndex = 14;
+            this.elitismCheckbox.Text = "activate Elistim";
+            this.elitismCheckbox.UseVisualStyleBackColor = true;
             // 
             // label12
             // 
@@ -343,6 +363,7 @@
             // 
             // numGenomeSize
             // 
+            this.numGenomeSize.Enabled = false;
             this.numGenomeSize.Location = new System.Drawing.Point(20, 115);
             this.numGenomeSize.Maximum = new decimal(new int[] {
             1000000,
@@ -483,31 +504,11 @@
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
-            // elitismCheckbox
-            // 
-            this.elitismCheckbox.AutoSize = true;
-            this.elitismCheckbox.Checked = true;
-            this.elitismCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.elitismCheckbox.Location = new System.Drawing.Point(204, 35);
-            this.elitismCheckbox.Name = "elitismCheckbox";
-            this.elitismCheckbox.Size = new System.Drawing.Size(96, 17);
-            this.elitismCheckbox.TabIndex = 14;
-            this.elitismCheckbox.Text = "activate Elistim";
-            this.elitismCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // elistimRate
-            // 
-            this.elistimRate.AutoSize = true;
-            this.elistimRate.Location = new System.Drawing.Point(201, 99);
-            this.elistimRate.Name = "elistimRate";
-            this.elistimRate.Size = new System.Drawing.Size(0, 13);
-            this.elistimRate.TabIndex = 15;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 750);
+            this.ClientSize = new System.Drawing.Size(917, 742);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.btnRandomRoute);
             this.Controls.Add(this.resultTextBox);
