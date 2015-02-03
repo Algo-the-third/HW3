@@ -80,6 +80,20 @@ namespace TSP
             return distance;
         }
 
+        // calculates the total distance following the path through all cities
+        public double GetTotalDistance(double[] route)
+        {
+            double distance = 0;
+
+
+            foreach (double d in route)
+            {
+                distance += d;
+            }
+
+            return distance;
+        }
+
         protected double getDistance(List<int> order, int leftIndex, int rightIndex)
         {
             int leftNodeId = order[leftIndex];
@@ -213,6 +227,7 @@ namespace TSP
 
 
         }
+
 
 
     }

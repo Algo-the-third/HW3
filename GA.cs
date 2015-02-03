@@ -22,6 +22,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TSP;
 
 namespace btl.generic
 {
@@ -31,7 +32,7 @@ namespace btl.generic
     /// <summary>
     /// Genetic Algorithm class
     /// </summary>
-    public class GA
+    public class GA : SimulatedAnnealingStrategy
     {
         private double m_mutationRate;
         private double m_crossoverRate;
@@ -96,6 +97,7 @@ namespace btl.generic
         /// </summary>
         public void Go()
         {
+            getFitness = GetTotalDistance;
             if (getFitness == null)
                 throw new ArgumentNullException("Need to supply fitness function");
             if (m_genomeSize == 0)

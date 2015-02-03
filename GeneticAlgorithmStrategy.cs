@@ -18,7 +18,7 @@ namespace TSP
         double worstFitness;
 
         //Das hier muss irgendwie mit der Städteanzahl zusammenarbeiten ! also genome 70.
-        //mplement one of the following especialiazed crossover operators: PMX, CX, OX1, OX2, POS, ER, VR, AP, MPX.  <- Hier muss dass hin für 70 genome, die die städte darstellen!
+       
         public double fitnessFunction(double[] values)
         {
             // TODO evaluate fitness function, should somehow compare distances
@@ -44,7 +44,7 @@ namespace TSP
             geneticAlgoritm.setElisitmMode(elitism);
             geneticAlgoritm.setElistimRate(elitismRate);
 
-            geneticAlgoritm.FitnessFunction = new GAFunction(this.fitnessFunction);
+            //geneticAlgoritm.FitnessFunction = new GAFunction(this.fitnessFunction);
            
             geneticAlgoritm.Go();
 
