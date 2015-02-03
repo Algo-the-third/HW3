@@ -58,16 +58,19 @@ namespace TSP
                 case "Simulated Annealing":
                     {                       
                         new Thread(calculateSimulatedAnnealing).Start();
+                        new Thread(showProgressOnLabel).Start();
                     }
                     break;
                 case "Greedy Strategy":
                     {
                         new Thread(calculateGreedyStrategy).Start();
+                        new Thread(showProgressOnLabel).Start();
                     }
                     break;
                 case "Genetic Algorithm":
                     {
                         new Thread(calculateGeneticAlgorithm).Start();
+                        new Thread(showProgressOnLabel).Start();
                     }
                     break;
             }
@@ -529,6 +532,37 @@ namespace TSP
 
             resultTextBox.AppendText("\r\n" + value);
         }
+
+         private void showProgressOnLabel()
+        {
+            int i = 0;
+            while (calculateThreadActive)
+            {
+                switch (i)
+                {
+                    case 0: setTextOnProgressLabel("Calculating."); break;
+                    case 1: setTextOnProgressLabel("Calculating.."); break;
+                    case 2: setTextOnProgressLabel("Calculating..."); break;
+                }
+                i++;
+                if (i == 3) 
+                    i = 0;
+                Thread.Sleep(500);
+            }
+            setTextOnProgressLabel("");
+            
+        }
+
+         private void setTextOnProgressLabel(String text)
+         {
+             if (InvokeRequired)
+             {
+                 this.Invoke(new Action<string>(setTextOnProgressLabel), new object[] { text });
+                 return;
+             }
+             calculatingLabel.Text = text;
+         }
+      
 
         private void clearTextBox()
         {

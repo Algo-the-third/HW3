@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
@@ -67,6 +67,7 @@
             this.btnRandomRoute = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.distanceLabel = new System.Windows.Forms.Label();
+            this.calculatingLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartCities)).BeginInit();
             this.TabArea.SuspendLayout();
             this.annealingTab.SuspendLayout();
@@ -84,16 +85,16 @@
             // 
             // chartCities
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartCities.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartCities.Legends.Add(legend1);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartCities.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartCities.Series.Add(series1);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
@@ -504,11 +505,20 @@
             this.distanceLabel.Size = new System.Drawing.Size(0, 13);
             this.distanceLabel.TabIndex = 11;
             // 
+            // calculatingLabel
+            // 
+            this.calculatingLabel.AutoSize = true;
+            this.calculatingLabel.Location = new System.Drawing.Point(546, 709);
+            this.calculatingLabel.Name = "calculatingLabel";
+            this.calculatingLabel.Size = new System.Drawing.Size(0, 13);
+            this.calculatingLabel.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 742);
+            this.Controls.Add(this.calculatingLabel);
             this.Controls.Add(this.distanceLabel);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.btnRandomRoute);
@@ -582,6 +592,7 @@
         private System.Windows.Forms.CheckBox elitismCheckbox;
         private System.Windows.Forms.Label elistimRate;
         private System.Windows.Forms.Label distanceLabel;
+        private System.Windows.Forms.Label calculatingLabel;
     }
 }
 
