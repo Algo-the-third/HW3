@@ -370,6 +370,12 @@ namespace TSP
 
         private void checkedListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (calculateThreadActive)
+            {
+                appendTextBox("Calculation in progess, please wait for it...");
+                return;
+            }
+
             City selectedCity = CityPositions.getInstance().getCityNodeAt(checkedListBox.SelectedIndex);
 
             updateRoute(selectedCity);
@@ -449,6 +455,12 @@ namespace TSP
 
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
+            if (calculateThreadActive)
+            {
+                appendTextBox("Calculation in progess, please wait for it...");
+                return;
+            }
+
             CityPositions postions = CityPositions.getInstance();
             List<City> missingCities = new List<City>();
 
@@ -472,6 +484,12 @@ namespace TSP
 
         private void btnSelectNone_Click(object sender, EventArgs e)
         {
+            if (calculateThreadActive)
+            {
+                appendTextBox("Calculation in progess, please wait for it...");
+                return;
+            }
+
             CityPositions postions = CityPositions.getInstance();
             List<City> missingCities = new List<City>();
 
@@ -577,6 +595,12 @@ namespace TSP
 
         private void btnRandomRoute_Click(object sender, EventArgs e)
         {
+            if (calculateThreadActive)
+            {
+                appendTextBox("Calculation in progess, please wait for it...");
+                return;
+            }
+
             SimulatedAnnealingStrategy strategy = new SimulatedAnnealingStrategy();
             strategy.generateCurrentOrder();
             List<int> randomArrangement = strategy.GetNextRandomArrangement(strategy.CitiesOrder);
