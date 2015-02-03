@@ -12,52 +12,97 @@ namespace TSP
     {
         double[] bestValues;
         double bestFitness;
-       
+
 
         double[] worstValues;
         double worstFitness;
 
-        //Das hier muss irgendwie mit der Städteanzahl zusammenarbeiten ! also genome 70.
-       
-        public double fitnessFunction(double[] values)
-        {
-            // TODO evaluate fitness function, should somehow compare distances
-            if (values.GetLength(0) != 3)
-            {
-                throw new ArgumentOutOfRangeException("should only have 3 args");
-            }
-            
-            double x = values[0];
-            double y = values[1];
-            double z = values[2];
-            double w = x - y + z;
 
-            return w; 
-        }
 
         public void doGenetics(double crossoverRate, double mutationRate, int populationSize, int generationSize, int genomeSize, Boolean elitism, int elitismRate)
         {
-            // TODO where to handle startPopulation genomes??
+
             ArrayList startPopulation = createStartPopulation(populationSize);
 
             GA geneticAlgoritm = new GA(crossoverRate, mutationRate, populationSize, generationSize, genomeSize);
             geneticAlgoritm.setElisitmMode(elitism);
             geneticAlgoritm.setElistimRate(elitismRate);
 
-            //geneticAlgoritm.FitnessFunction = new GAFunction(this.fitnessFunction);
-           
             geneticAlgoritm.Go();
 
             geneticAlgoritm.GetBest(out bestValues, out bestFitness);
             geneticAlgoritm.GetWorst(out worstValues, out worstFitness);
 
-            currentOrder = geneticAlgoritm.getCurrentOrder();
+            calculateOrder(geneticAlgoritm.getCurrentOrder());
         }
 
-        public List<int> getCurrentOrder()
+        private void calculateOrder(List<double> cityOrder)
         {
-            return currentOrder;
+         
+            List<int> localCities = CityPositions.getInstance().getCurrentRouteNodesList();
+            int cityCount = CityPositions.getInstance().getRouteCount();
+
+            currentOrder = new List<int>();
+
+            int currentNextCity = 0;
+            while (!(cityOrder.Count == 0))
+            {
+
+                int indexToRemove = 0;
+                if (currentNextCity == 0)
+                {
+                    currentNextCity = localCities[0];
+                    nextRandomOrder.Add(currentNextCity);
+                }
+
+                for (int i = 0; i < cityOrder.Count; i++)
+                {
+
+                    if (localCities[i] == currentNextCity)
+                    {
+                        indexToRemove = i;
+                        break;
+                    }
+                }
+
+                cityOrder.RemoveAt(indexToRemove);
+
+               
+                double minDistance = 99999;
+                for (int j = 0; j < cityOrder.Count; j++)
+                {
+                    //Look for the current City distances for each city 
+                    double distance = cityOrder[j];
+                    //Look for shorter or equal distance to the next city 
+                    if (distance <= minDistance & distance != 0)
+                    {
+                        int city = localCities[j];
+                        if (!nextRandomOrder.Contains(city))
+                        {
+                            minDistance = distance;
+                            currentNextCity = city;
+                        }
+                    }
+
+                }
+
+              
+                //save the shortest city from the current in the list;
+                if (!nextRandomOrder.Contains(currentNextCity))
+                {
+                    nextRandomOrder.Add(currentNextCity);
+                }
+            }
+
+
+            for (int i = 0; i < nextRandomOrder.Count; i++)
+            {
+                currentOrder.Add(nextRandomOrder[i]);
+            }
+
+
         }
+
 
         /// <summary>
         /// Create the start population with the given size.

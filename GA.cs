@@ -393,15 +393,10 @@ namespace btl.generic
             fitness = (double)g.Fitness;
         }
 
-        public List<int> getCurrentOrder()
+        public List<double> getCurrentOrder()
         {
-            var listChild = new List<double>(((Genome)m_thisGeneration[0]).m_genes);
-            List<int> list = new List<int>();
-            foreach (double d in listChild)
-            {
-                list.Add(Convert.ToInt32(d));
-            }
-            return list;
+           return new List<double>(((Genome)m_thisGeneration[0]).m_genes);
+           
         }
 
     }
