@@ -238,7 +238,12 @@ namespace btl.generic
 
                 if (m_random.NextDouble() < m_crossoverRate)
                 {
-                    parent1.Crossover(ref parent2, out child1, out child2);
+                    //original Crossover function
+                    //parent1.Crossover(ref parent2, out child1, out child2);
+
+                    // Approximate Reasoning Crossover
+                    parent1.Crossover_AP(ref parent2, out child1, out child2);
+
                 }
                 else
                 {

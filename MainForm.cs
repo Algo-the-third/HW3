@@ -42,7 +42,7 @@ namespace TSP
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-
+           
             String mode = TabArea.SelectedTab.Text;
 
             if (calculateThreadActive)
@@ -50,6 +50,8 @@ namespace TSP
                 appendTextBox("There is an other calculation process active please wait.");
                 return;
             }
+
+            clearTextBox();
 
             switch (mode)
             {
@@ -181,7 +183,7 @@ namespace TSP
 
                 geneticStrategy.doGenetics(crossoverRate, mutationRate, populationSize, generationSize, genomeSize, elitismMode, elisitmSize);
 
-                appendTextBox("Genetic Algorithm Strategy");
+                appendTextBox("Genetic Algorithm Strategy using Approximate Reasoning (AP)\r\n");
                 appendTextBox("Best fitness:" + geneticStrategy.getBestFitness());
                 appendTextBox("Best values:" + Util.toString(geneticStrategy.getBestValues(), ", "));
                 appendTextBox("Worst fitness:" + geneticStrategy.getWorstFitness());
@@ -526,6 +528,17 @@ namespace TSP
             }
 
             resultTextBox.AppendText("\r\n" + value);
+        }
+
+        private void clearTextBox()
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action(clearTextBox), new object[] { });
+                return;
+            }
+
+            resultTextBox.Text = "";
         }
 
         private void btnRandomRoute_Click(object sender, EventArgs e)
