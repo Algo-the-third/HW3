@@ -30,6 +30,12 @@ namespace btl.generic
 	/// </summary>
 	public class Genome
 	{
+
+        public double[] m_genes;
+        private int m_length;
+        private double m_fitness;
+        static Random m_random = new Random();
+        private static double m_mutationRate;
 		public Genome()
 		{
 			//
@@ -117,12 +123,7 @@ namespace btl.generic
 		}
 
 
-		public double[] m_genes;
-		private int m_length;
-		private double m_fitness;
-		static Random m_random = new Random();
-
-		private static double m_mutationRate;
+	
 
 		public double Fitness
 		{

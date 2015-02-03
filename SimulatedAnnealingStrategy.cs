@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace TSP
 {
@@ -94,7 +95,9 @@ namespace TSP
         /// </summary>
         /// <param name="order"></param>
         /// <returns>List containing the nodeIds of City instances in the CityPositions collection.</returns>
-        public List<int> GetNextRandomArrangement(List<int> order)
+        /// 
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public  List<int> GetNextRandomArrangement(List<int> order)
         {
             List<int> newOrder = new List<int>();
 

@@ -12,10 +12,13 @@ namespace TSP
     {
         double[] bestValues;
         double bestFitness;
+       
 
         double[] worstValues;
         double worstFitness;
 
+        //Das hier muss irgendwie mit der Städteanzahl zusammenarbeiten ! also genome 70.
+        //mplement one of the following especialiazed crossover operators: PMX, CX, OX1, OX2, POS, ER, VR, AP, MPX.  <- Hier muss dass hin für 70 genome, die die städte darstellen!
         public double fitnessFunction(double[] values)
         {
             // TODO evaluate fitness function, should somehow compare distances
@@ -47,6 +50,13 @@ namespace TSP
 
             geneticAlgoritm.GetBest(out bestValues, out bestFitness);
             geneticAlgoritm.GetWorst(out worstValues, out worstFitness);
+
+            currentOrder = geneticAlgoritm.getCurrentOrder();
+        }
+
+        public List<int> getCurrentOrder()
+        {
+            return currentOrder;
         }
 
         /// <summary>

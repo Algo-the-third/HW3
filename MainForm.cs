@@ -185,6 +185,31 @@ namespace TSP
                 appendTextBox("Best values:" + Util.toString(geneticStrategy.getBestValues(), ", "));
                 appendTextBox("Worst fitness:" + geneticStrategy.getWorstFitness());
                 appendTextBox("Worst values:" + Util.toString(geneticStrategy.getWorstValues(), ", "));
+
+                List<int> currentOrder = geneticStrategy.getCurrentOrder();
+
+                String path = "";
+
+                for (int i = 0; i < currentOrder.Count - 1; i++)
+                {
+                    path += currentOrder[i] + " -> ";
+                }
+                path += currentOrder[currentOrder.Count - 1];
+
+                appendTextBox("Genetic Algorithm");
+                appendTextBox("Shortest Route: " + path);
+
+                //Creates a list of Cities in Citypostions based on the given sorted node list.
+                CityPositions cityPostions = CityPositions.getInstance();
+                cityPostions.generateSortedRouteByGivenNodeIdlist(currentOrder);
+                //Calculate current Route distance
+                Double currentRouteDistance = new Distance().calculateTotalRouteDistance(cityPostions.getSortedRoute());
+
+                appendTextBox("The shortest distance is: " + currentRouteDistance);
+                redrawRouteOnChart();
+                displayRouteDistance(currentRouteDistance);
+
+               
             }
             catch (InvalidCastException e)
             {

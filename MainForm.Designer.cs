@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
@@ -84,16 +84,16 @@
             // 
             // chartCities
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chartCities.Legends.Add(legend5);
+            chartArea6.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chartCities.Legends.Add(legend6);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chartCities.Series.Add(series5);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chartCities.Series.Add(series6);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
@@ -353,7 +353,7 @@
             this.numGenomeSize.Size = new System.Drawing.Size(64, 20);
             this.numGenomeSize.TabIndex = 10;
             this.numGenomeSize.Value = new decimal(new int[] {
-            3,
+            70,
             0,
             0,
             0});
