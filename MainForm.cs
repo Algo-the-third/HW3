@@ -632,6 +632,11 @@ namespace TSP
             numElitismRatio_ValueChanged(null, null);
         }
 
+        private void MainForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
     
     }
 
