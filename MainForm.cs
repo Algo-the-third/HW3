@@ -186,7 +186,7 @@ namespace TSP
 
                 geneticStrategy.doGenetics(crossoverRate, mutationRate, populationSize, generationSize, genomeSize, elitismMode, elisitmSize);
 
-                appendTextBox("Genetic Algorithm Strategy using Approximate Reasoning (AP)\r\n");
+                appendTextBox("Genetic Algorithm Crossover Strategy PMX\r\n");
                 appendTextBox("Best fitness:" + geneticStrategy.getBestFitness());
                 appendTextBox("Best values:" + Util.toString(geneticStrategy.getBestValues(), ", "));
                 appendTextBox("Worst fitness:" + geneticStrategy.getWorstFitness());

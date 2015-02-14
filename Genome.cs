@@ -84,69 +84,110 @@ namespace btl.generic
                 m_genes[i] = m_random.NextDouble();
         }
 
-        public void Crossover(ref Genome genome2, out Genome child1, out Genome child2)
-        {
-            int pos = (int)(m_random.NextDouble() * (double)m_length);
-            child1 = new Genome(m_length, false);
-            child2 = new Genome(m_length, false);
-            for (int i = 0; i < m_length; i++)
-            {
-                if (i < pos)
-                {
-                    child1.m_genes[i] = m_genes[i];
-                    child2.m_genes[i] = genome2.m_genes[i];
-                }
-                else
-                {
-                    child1.m_genes[i] = genome2.m_genes[i];
-                    child2.m_genes[i] = m_genes[i];
-                }
-            }
-        }
+        
 
         /**
-         *  Approximate Reasoning - is the process or processes by which a possible imprecise conclusion is deduced from a collection of imprecise premises. 
+         *  Because it offers better performance than most other crossover techniques. 
+         * 
          */
-        public void Crossover_AP(ref Genome genomesOfParent2, out Genome child1, out Genome child2)
+        public void CrossoverPMX(ref Genome parent1, out Genome child1, out Genome child2)
         {
-            child1 = new Genome(m_length, false, Generation + 1);
-            child2 = new Genome(m_length, false, Generation + 1);
+          
+            child1 = new Genome(m_length, false);
+            child2 = new Genome(m_length, false);
 
-            var newChild1 = new List<double>();
-            var newChild2 = new List<double>();
 
-            //iterate over all values of parents and create children
-            for (int i = 0; i < m_length; i++)
-            {
-                //switch between every parent after every value
-                if (!newChild1.Contains(m_genes[i]))
-                {
-                    newChild1.Add(m_genes[i]);
-                }
-
-                if (!newChild1.Contains(genomesOfParent2.m_genes[i]))
-                {
-                    newChild1.Add(genomesOfParent2.m_genes[i]);
-                }
-
-                //switch between every parent after every value				
-                if (!newChild2.Contains(genomesOfParent2.m_genes[i]))
-                {
-                    newChild2.Add(genomesOfParent2.m_genes[i]);
-                }
-
-                if (!newChild2.Contains(m_genes[i]))
-                {
-                    newChild2.Add(m_genes[i]);
-                }
+            int position1 = 0; 
+            int position2 = 0;
+            //making sure position1 & 2 aren't equal and p1 is located before p2;
+            while(position1 == position2){
+                position1 = (int)(m_random.NextDouble() * (double)m_length);
+                position2 = (int)(m_random.NextDouble() * (double)m_length);
             }
 
-            for (int i = 0; i < m_length; i++)
+            if (position1 > position2)
             {
-                child1.m_genes[i] = newChild1[i];
-                child2.m_genes[i] = newChild2[i];
+                int temp = position1;
+                position1 = position2;
+                position2 = temp;
             }
+
+            //child one
+            generatePMX(this, parent1, child1, position1, position2);
+            //child two with parents changed
+            generatePMX(parent1, this, child2, position1, position2);
+                
         }
+
+       
+        private void generatePMX(Genome parent1, Genome parent2, Genome child, int position1, int position2)
+        {
+
+            //List of Segments from parent1 selected by the random indizes and copy them direct to the childs
+            List<double> selectedSegments = new List<double>();
+            for (int i = position1; i <= position2; i++)
+            {
+                child.m_genes[i] = parent1.m_genes[i];
+
+            }
+
+
+            int positionForInclude = position1;
+
+            double d = 0;
+
+            for (int i = position1; i <= position2; i++)
+            {
+                if (parent2.m_genes[i] != parent1.m_genes[i])
+                {
+                    d = parent2.m_genes[i];
+                    Boolean foundInParent = false;
+                    for (int j = i + 1; j <= position2; j++)
+                    {
+                        if (parent1.m_genes[j] == d)
+                        {
+                            foundInParent = true;
+                        }
+                    }
+
+                    //inser element in child.
+                    if (foundInParent)
+                    {
+                        while (true)
+                        {
+                            if (positionForInclude < 0)
+                                break;
+                            if (child.m_genes[positionForInclude] == 0.0)
+                            {
+                                child.m_genes[positionForInclude] = d;
+                                break;
+                            }
+                            else
+                            {
+                                positionForInclude--;
+                            }
+                        }
+
+
+                    }
+                }
+
+            }
+            //filling the rest with chromozomes from parent2
+            for (int i = 0; i < parent2.m_genes.Length; i++)
+            {
+                if (child.m_genes[i] == 0.0)
+                {
+                    child.m_genes[i] = parent2.m_genes[i];
+                }
+            }
+
+        }
+          
+
+
+
+       
 
 
         public void Mutate()
