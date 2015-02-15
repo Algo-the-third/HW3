@@ -412,7 +412,7 @@
             // 
             this.numGenerationSize.Location = new System.Drawing.Point(119, 71);
             this.numGenerationSize.Maximum = new decimal(new int[] {
-            100000,
+            10000000,
             0,
             0,
             0});
