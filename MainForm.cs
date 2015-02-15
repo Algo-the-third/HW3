@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace TSP
 
         private DataPoint currentDataPoint;
         private static Boolean calculateThreadActive = false;
+        private static volatile Stopwatch timer = new Stopwatch(); 
 
 
 
@@ -32,6 +34,7 @@ namespace TSP
             new FileLoader().loadPostions();
             displayCitiesOnChart();
             displayCitiesInCheckBox();
+            timeChart.Series.Clear();
             numElitismRatio_ValueChanged(null,null);
             numGenomeSize.Value = CityPositions.getInstance().getRouteCount();
 
@@ -83,7 +86,8 @@ namespace TSP
             double temperature;
             double coolingRate;
             double absoluteTemperature;
-
+            timer.Reset();
+            timer.Start();
             try
             {
                 temperature = (double)numTemperature.Value;
@@ -113,7 +117,7 @@ namespace TSP
             problem.setAbsoluteTemperature(absoluteTemperature);
             problem.generateCurrentOrder();
             problem.Anneal();
-
+            timer.Stop();
             for (int i = 0; i < problem.CitiesOrder.Count - 1; i++)
             {
                 path += problem.CitiesOrder[i] + " -> ";
@@ -123,23 +127,26 @@ namespace TSP
             appendTextBox("Simulated Annealing ");
             appendTextBox("Shortest Route: " + path);
             appendTextBox("The shortest distance is: " + problem.ShortestDistance.ToString());
-
+            appendTextBox(timer.ElapsedMilliseconds + " ms");
 
             //Creates a list of Cities in Citypostions based on the given sorted node list.
             CityPositions.getInstance().generateSortedRouteByGivenNodeIdlist(problem.CitiesOrder);
             redrawRouteOnChart();
             displayRouteDistance(problem.ShortestDistance);
+            appendTimeChart(timer.ElapsedMilliseconds, Constants.ANNEALING);
             calculateThreadActive = false;
         }
 
 
         private void calculateGreedyStrategy()
         {
+            timer.Reset();
+            timer.Start();
             calculateThreadActive = true;
             GreedyStrategy greedyStrategy = new GreedyStrategy();
             greedyStrategy.generateCurrentOrder();
             greedyStrategy.calculateNNRoute();
-
+            timer.Stop();
             String path = "";
 
             for (int i = 0; i < greedyStrategy.CitiesOrder.Count - 1; i++)
@@ -158,8 +165,10 @@ namespace TSP
             Double currentRouteDistance = new Distance().calculateTotalRouteDistance(cityPostions.getSortedRoute());
 
             appendTextBox("The shortest distance is: " + currentRouteDistance);
+            appendTextBox(timer.ElapsedMilliseconds + " ms");
             redrawRouteOnChart();
             displayRouteDistance(currentRouteDistance);
+            appendTimeChart(timer.ElapsedMilliseconds, Constants.GREEDY);
           
             calculateThreadActive = false;
 
@@ -171,6 +180,8 @@ namespace TSP
 
             try
             {
+                timer.Reset();
+                timer.Start();
                 double closeCityRate = Convert.ToDouble(numCloseCity.Value);
                 double mutationRate = Convert.ToDouble(numMutationRate.Value);
                 int populationSize = Convert.ToInt32(numPopulationSize.Value);
@@ -186,6 +197,7 @@ namespace TSP
                 geneticStrategy.generateCurrentOrder();
 
                 geneticStrategy.doGenetics(closeCityRate, mutationRate, populationSize, generationSize, genomeSize, elitismMode, elisitmSize, groupsize);
+                timer.Stop();
 
                 appendTextBox("Genetic Algorithm Crossover Strategy PMX\r\n");
                           
@@ -212,8 +224,10 @@ namespace TSP
                 appendTextBox("Shortest Route: " + path);
 
                 appendTextBox("The shortest distance is: " + currentRouteDistance);
+                appendTextBox(timer.ElapsedMilliseconds + " ms");
                 redrawRouteOnChart();
                 displayRouteDistance(currentRouteDistance);
+                appendTimeChart(timer.ElapsedMilliseconds, Constants.GENETIC);
 
                
             }
@@ -638,7 +652,35 @@ namespace TSP
 
         }
 
-    
+        private void appendTimeChart(long value, string mode)
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<long, string>(appendTimeChart), new object[] { value, mode });
+                return;
+            }
+
+
+            if (!timeChart.Series.IsUniqueName(mode))
+            {
+                timeChart.Series.Remove(timeChart.Series[mode]);
+
+            }
+
+            timeChart.Series.Add(mode);
+            timeChart.Series[mode].ChartType = SeriesChartType.Column;
+            timeChart.ChartAreas[0].AxisY.Title = "cpuTimes";
+
+            if (mode.Equals(Constants.ANNEALING))
+                timeChart.Series[mode].Points.AddXY(1, value);
+
+            if (mode.Equals(Constants.GREEDY))
+                timeChart.Series[mode].Points.AddXY(2, value);
+
+            if (mode.Equals(Constants.GENETIC))
+                timeChart.Series[mode].Points.AddXY(3, value);
+
+        }
 
     
     }
