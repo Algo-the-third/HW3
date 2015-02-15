@@ -80,7 +80,7 @@ namespace TSP
             return distance;
         }
 
-        // calculates the total distance following the path through all cities
+        // calculates the total distance following the path through all cities - used as fitness function, should calculate shortest distance
         public double GetTotalDistance(double[] route)
         {
             double distance = 0;

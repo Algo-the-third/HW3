@@ -17,23 +17,53 @@ namespace TSP
         double[] worstValues;
         double worstFitness;
 
+        /// <summary>
+        /// Random number generator object.
+        /// We allow the GUI to set the seed for the random number generator to assist in debugging.
+        /// This allows errors to be easily reproduced.
+        /// </summary>
+        Random rand;
 
+        /// <summary>
+        /// The complete list of all the tours.
+        /// </summary>
+        Population population;
 
-        public void doGenetics(double crossoverRate, double mutationRate, int populationSize, int generationSize, int genomeSize, Boolean elitism, int elitismRate)
+        /// <summary>
+        /// The list of cities where we are trying to find the best tour.
+        /// </summary>
+        Cities cityList = new Cities();
+
+        /// <summary>
+        /// The class that does all the work in the TSP algorithm.
+        /// If this is not null, then the algorithm is still running.
+        /// </summary>
+        Tsp tsp;
+
+        public void doGenetics(double closeCityRate, double mutationRate, int populationSize, int generationSize, int genomeSize, Boolean elitism, int elitismRate, int groupsize)
         {
+            //Merge our cityinformation in the other schema
+            cityList.fillCitiesWithCurrentCitiesInRoute();
+            cityList.CalculateCityDistances(Convert.ToInt32(closeCityRate));
+            tsp = new Tsp();
 
-            ArrayList startPopulation = createStartPopulation(populationSize);
+            tsp.Begin(populationSize, generationSize, groupsize, Convert.ToInt32(mutationRate), 0, Convert.ToInt32(closeCityRate), cityList);
+         
+            tsp = null;
+          
 
-            GA geneticAlgoritm = new GA(crossoverRate, mutationRate, populationSize, generationSize, genomeSize);
-            geneticAlgoritm.setElisitmMode(elitism);
-            geneticAlgoritm.setElistimRate(elitismRate);
+           // ArrayList startPopulation = createStartPopulation(populationSize);
 
-            geneticAlgoritm.Go();
+           // GA geneticAlgoritm = new GA(crossoverRate, mutationRate, populationSize, generationSize, genomeSize);
+           // geneticAlgoritm.setElisitmMode(elitism);
+           // geneticAlgoritm.setElistimRate(elitismRate);
 
-            geneticAlgoritm.GetBest(out bestValues, out bestFitness);
-            geneticAlgoritm.GetWorst(out worstValues, out worstFitness);
+           // geneticAlgoritm.Go();
 
-            calculateOrder(geneticAlgoritm.getCurrentOrder());
+           // geneticAlgoritm.GetBest(out bestValues, out bestFitness);
+           // geneticAlgoritm.GetWorst(out worstValues, out worstFitness);
+
+           // calculateOrder(geneticAlgoritm.getCurrentOrder());
         }
 
         private void calculateOrder(List<double> cityOrder)

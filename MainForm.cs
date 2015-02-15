@@ -171,12 +171,13 @@ namespace TSP
 
             try
             {
-                double crossoverRate = Convert.ToDouble(numCrossoverRate.Value);
+                double closeCityRate = Convert.ToDouble(numCloseCity.Value);
                 double mutationRate = Convert.ToDouble(numMutationRate.Value);
                 int populationSize = Convert.ToInt32(numPopulationSize.Value);
                 int generationSize = Convert.ToInt32(numGenerationSize.Value);
                 int genomeSize = Convert.ToInt32(numGenomeSize.Value);
                 int elisitmSize = Convert.ToInt32(numElitismRatio.Value);
+                int groupsize = Convert.ToInt32(numGroupsize.Value);
                 //double mixingRatio = Convert.ToDouble(numMixingRatio.Value);
                 Boolean elitismMode = elitismCheckbox.Checked;
               
@@ -184,15 +185,10 @@ namespace TSP
                 GeneticAlgorithmStrategy geneticStrategy = new GeneticAlgorithmStrategy();
                 geneticStrategy.generateCurrentOrder();
 
-                geneticStrategy.doGenetics(crossoverRate, mutationRate, populationSize, generationSize, genomeSize, elitismMode, elisitmSize);
+                geneticStrategy.doGenetics(closeCityRate, mutationRate, populationSize, generationSize, genomeSize, elitismMode, elisitmSize, groupsize);
 
                 appendTextBox("Genetic Algorithm Crossover Strategy PMX\r\n");
-                appendTextBox("Best fitness:" + geneticStrategy.getBestFitness());
-                appendTextBox("Best values:" + Util.toString(geneticStrategy.getBestValues(), ", "));
-                appendTextBox("Worst fitness:" + geneticStrategy.getWorstFitness());
-                appendTextBox("Worst values:" + Util.toString(geneticStrategy.getWorstValues(), ", "));
-
-             
+                          
                 String path = "";
 
                 for (int i = 0; i < geneticStrategy.CitiesOrder.Count - 1; i++)
@@ -206,7 +202,8 @@ namespace TSP
 
                 //Creates a list of Cities in Citypostions based on the given sorted node list.
                 CityPositions cityPostions = CityPositions.getInstance();
-                cityPostions.generateSortedRouteByGivenNodeIdlist(geneticStrategy.CitiesOrder);
+                //cityPostions.generateSortedRouteByGivenNodeIdlist(geneticStrategy.CitiesOrder);
+                cityPostions.calculateCityOrderByTour();
                 //Calculate current Route distance
                 Double currentRouteDistance = new Distance().calculateTotalRouteDistance(cityPostions.getSortedRoute());
 
@@ -636,6 +633,8 @@ namespace TSP
         {
 
         }
+
+    
 
     
     }

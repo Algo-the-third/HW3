@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
@@ -52,10 +52,10 @@
             this.label12 = new System.Windows.Forms.Label();
             this.numElitismRatio = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
-            this.numMixingRatio = new System.Windows.Forms.NumericUpDown();
+            this.numGroupsize = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.numGenomeSize = new System.Windows.Forms.NumericUpDown();
-            this.numCrossoverRate = new System.Windows.Forms.NumericUpDown();
+            this.numCloseCity = new System.Windows.Forms.NumericUpDown();
             this.numPopulationSize = new System.Windows.Forms.NumericUpDown();
             this.numGenerationSize = new System.Windows.Forms.NumericUpDown();
             this.numMutationRate = new System.Windows.Forms.NumericUpDown();
@@ -75,9 +75,9 @@
             this.greedyTab.SuspendLayout();
             this.geneticTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numElitismRatio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMixingRatio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGroupsize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGenomeSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCrossoverRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCloseCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPopulationSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGenerationSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMutationRate)).BeginInit();
@@ -85,16 +85,16 @@
             // 
             // chartCities
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartCities.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartCities.Legends.Add(legend1);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartCities.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartCities.Series.Add(series1);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
@@ -258,10 +258,10 @@
             this.geneticTab.Controls.Add(this.label12);
             this.geneticTab.Controls.Add(this.numElitismRatio);
             this.geneticTab.Controls.Add(this.label11);
-            this.geneticTab.Controls.Add(this.numMixingRatio);
+            this.geneticTab.Controls.Add(this.numGroupsize);
             this.geneticTab.Controls.Add(this.label5);
             this.geneticTab.Controls.Add(this.numGenomeSize);
-            this.geneticTab.Controls.Add(this.numCrossoverRate);
+            this.geneticTab.Controls.Add(this.numCloseCity);
             this.geneticTab.Controls.Add(this.numPopulationSize);
             this.geneticTab.Controls.Add(this.numGenerationSize);
             this.geneticTab.Controls.Add(this.numMutationRate);
@@ -328,22 +328,27 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(116, 99);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 13);
+            this.label11.Size = new System.Drawing.Size(54, 13);
             this.label11.TabIndex = 11;
-            this.label11.Text = "Mixing Ratio";
+            this.label11.Text = "Groupsize";
             // 
-            // numMixingRatio
+            // numGroupsize
             // 
-            this.numMixingRatio.DecimalPlaces = 2;
-            this.numMixingRatio.Location = new System.Drawing.Point(119, 115);
-            this.numMixingRatio.Maximum = new decimal(new int[] {
+            this.numGroupsize.DecimalPlaces = 2;
+            this.numGroupsize.Location = new System.Drawing.Point(119, 115);
+            this.numGroupsize.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numMixingRatio.Name = "numMixingRatio";
-            this.numMixingRatio.Size = new System.Drawing.Size(64, 20);
-            this.numMixingRatio.TabIndex = 11;
+            this.numGroupsize.Name = "numGroupsize";
+            this.numGroupsize.Size = new System.Drawing.Size(64, 20);
+            this.numGroupsize.TabIndex = 11;
+            this.numGroupsize.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             // 
             // label5
             // 
@@ -372,15 +377,15 @@
             0,
             0});
             // 
-            // numCrossoverRate
+            // numCloseCity
             // 
-            this.numCrossoverRate.DecimalPlaces = 2;
-            this.numCrossoverRate.Location = new System.Drawing.Point(119, 29);
-            this.numCrossoverRate.Name = "numCrossoverRate";
-            this.numCrossoverRate.Size = new System.Drawing.Size(64, 20);
-            this.numCrossoverRate.TabIndex = 6;
-            this.numCrossoverRate.Value = new decimal(new int[] {
-            80,
+            this.numCloseCity.DecimalPlaces = 2;
+            this.numCloseCity.Location = new System.Drawing.Point(119, 29);
+            this.numCloseCity.Name = "numCloseCity";
+            this.numCloseCity.Size = new System.Drawing.Size(64, 20);
+            this.numCloseCity.TabIndex = 6;
+            this.numCloseCity.Value = new decimal(new int[] {
+            75,
             0,
             0,
             0});
@@ -397,7 +402,7 @@
             this.numPopulationSize.Size = new System.Drawing.Size(64, 20);
             this.numPopulationSize.TabIndex = 5;
             this.numPopulationSize.Value = new decimal(new int[] {
-            100,
+            10000,
             0,
             0,
             0});
@@ -456,9 +461,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(116, 13);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(102, 13);
+            this.label8.Size = new System.Drawing.Size(135, 13);
             this.label8.TabIndex = 1;
-            this.label8.Text = "Crossover Rate in %";
+            this.label8.Text = "Chance to use close City %";
             // 
             // label7
             // 
@@ -542,9 +547,9 @@
             this.geneticTab.ResumeLayout(false);
             this.geneticTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numElitismRatio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numMixingRatio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGroupsize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGenomeSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCrossoverRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCloseCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPopulationSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGenerationSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMutationRate)).EndInit();
@@ -572,7 +577,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numTemperature;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numCrossoverRate;
+        private System.Windows.Forms.NumericUpDown numCloseCity;
         private System.Windows.Forms.NumericUpDown numPopulationSize;
         private System.Windows.Forms.NumericUpDown numGenerationSize;
         private System.Windows.Forms.NumericUpDown numMutationRate;
@@ -584,7 +589,7 @@
         private System.Windows.Forms.TextBox txtCoolingRate;
         private System.Windows.Forms.Button btnRandomRoute;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.NumericUpDown numMixingRatio;
+        private System.Windows.Forms.NumericUpDown numGroupsize;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numGenomeSize;
         private System.Windows.Forms.Button btnCalculate;

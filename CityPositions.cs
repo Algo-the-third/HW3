@@ -12,6 +12,7 @@ namespace TSP
         private List<City> route;
         private List<City> cities;
         private List<City> sortedRoute;
+        private Tour bestTour;
 
         private CityPositions()
         {
@@ -64,6 +65,15 @@ namespace TSP
             return route[positon];
         }
 
+        public void setBestTour(Tour tour)
+        {
+            this.bestTour = tour;
+        }
+
+        public Tour getBestTour()
+        {
+            return bestTour;
+        }
 
         public City getCityNodeAt(int positon)
         {
@@ -126,6 +136,35 @@ namespace TSP
             }
 
             return false;
+        }
+
+        public void calculateCityOrderByTour()
+        {
+            List<int> list = new List<int>();
+
+            int i = -1;
+            while (list.Count < 69)
+            {
+                //int temp = 0;
+                if (i == -1)
+                {
+                    //temp = bestTour[0].Connection2;
+                    list.Add(0);
+                    i = 0;
+                }
+                int temp = i;
+                i = bestTour[i].Connection2;
+                if (list.Contains(i))
+                {
+                    i = bestTour[temp].Connection1;
+                }
+
+                list.Add(i);
+
+            }
+
+            generateSortedRouteByGivenNodeIdlist(list);
+           
         }
 
     }
