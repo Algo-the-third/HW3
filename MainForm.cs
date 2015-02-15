@@ -189,16 +189,7 @@ namespace TSP
 
                 appendTextBox("Genetic Algorithm Crossover Strategy PMX\r\n");
                           
-                String path = "";
-
-                for (int i = 0; i < geneticStrategy.CitiesOrder.Count - 1; i++)
-                {
-                    path += geneticStrategy.CitiesOrder[i] + " -> ";
-                }
-                path += geneticStrategy.CitiesOrder[geneticStrategy.CitiesOrder.Count - 1];
-
-                appendTextBox("Genetic Algorithm");
-                appendTextBox("Shortest Route: " + path);
+                
 
                 //Creates a list of Cities in Citypostions based on the given sorted node list.
                 CityPositions cityPostions = CityPositions.getInstance();
@@ -206,6 +197,19 @@ namespace TSP
                 cityPostions.calculateCityOrderByTour();
                 //Calculate current Route distance
                 Double currentRouteDistance = new Distance().calculateTotalRouteDistance(cityPostions.getSortedRoute());
+
+                String path = "";
+
+                List<City> sortedList = cityPostions.getSortedRoute();
+
+                for (int i = 0; i < sortedList.Count; i++)
+                {
+                    path += sortedList[i].getNodeId() + " -> ";
+                }
+                path += sortedList[sortedList.Count - 1].getNodeId();
+
+                appendTextBox("Genetic Algorithm");
+                appendTextBox("Shortest Route: " + path);
 
                 appendTextBox("The shortest distance is: " + currentRouteDistance);
                 redrawRouteOnChart();
