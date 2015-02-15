@@ -208,7 +208,7 @@ namespace TSP
                 }
                 path += sortedList[sortedList.Count - 1].getNodeId();
 
-                appendTextBox("Genetic Algorithm");
+              
                 appendTextBox("Shortest Route: " + path);
 
                 appendTextBox("The shortest distance is: " + currentRouteDistance);
