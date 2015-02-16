@@ -143,7 +143,7 @@ namespace TSP
             List<int> list = new List<int>();
 
             int i = -1;
-            while (list.Count < 70)
+            while (list.Count < bestTour.Count)
             {
                 //int temp = 0;
                 if (i == -1)
