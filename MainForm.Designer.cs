@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
@@ -90,16 +90,16 @@
             // 
             // chartCities
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartCities.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartCities.Legends.Add(legend1);
+            chartArea5.Name = "ChartArea1";
+            this.chartCities.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chartCities.Legends.Add(legend5);
             this.chartCities.Location = new System.Drawing.Point(53, 25);
             this.chartCities.Name = "chartCities";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartCities.Series.Add(series1);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chartCities.Series.Add(series5);
             this.chartCities.Size = new System.Drawing.Size(799, 368);
             this.chartCities.TabIndex = 0;
             this.chartCities.Text = "chartCities";
@@ -292,8 +292,6 @@
             // elitismCheckbox
             // 
             this.elitismCheckbox.AutoSize = true;
-            this.elitismCheckbox.Checked = true;
-            this.elitismCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.elitismCheckbox.Location = new System.Drawing.Point(204, 35);
             this.elitismCheckbox.Name = "elitismCheckbox";
             this.elitismCheckbox.Size = new System.Drawing.Size(96, 17);
@@ -306,9 +304,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(201, 55);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(84, 13);
+            this.label12.Size = new System.Drawing.Size(62, 13);
             this.label12.TabIndex = 12;
-            this.label12.Text = "Elisitm Genomes";
+            this.label12.Text = "Elisitm Rate";
             // 
             // numElitismRatio
             // 
@@ -354,6 +352,7 @@
             0,
             0,
             0});
+            this.numGroupsize.ValueChanged += new System.EventHandler(this.numGroupsize_ValueChanged);
             // 
             // label5
             // 
@@ -525,16 +524,16 @@
             // 
             // timeChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.timeChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.timeChart.Legends.Add(legend2);
+            chartArea6.Name = "ChartArea1";
+            this.timeChart.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.timeChart.Legends.Add(legend6);
             this.timeChart.Location = new System.Drawing.Point(868, 25);
             this.timeChart.Name = "timeChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.timeChart.Series.Add(series2);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.timeChart.Series.Add(series6);
             this.timeChart.Size = new System.Drawing.Size(298, 368);
             this.timeChart.TabIndex = 13;
             this.timeChart.Text = "chart1";
@@ -558,7 +557,7 @@
             this.Controls.Add(this.chartCities);
             this.Name = "MainForm";
             this.Text = "TCP - Winterterm 2014/15 - Felix Griewald, Sascha Feldmann, Marco Seidler";
-            this.Load += new System.EventHandler(this.MainForm_Load_1);
+           
             ((System.ComponentModel.ISupportInitialize)(this.chartCities)).EndInit();
             this.TabArea.ResumeLayout(false);
             this.annealingTab.ResumeLayout(false);

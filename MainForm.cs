@@ -191,7 +191,13 @@ namespace TSP
                 int groupsize = Convert.ToInt32(numGroupsize.Value);
                 //double mixingRatio = Convert.ToDouble(numMixingRatio.Value);
                 Boolean elitismMode = elitismCheckbox.Checked;
-              
+
+                if (elitismMode & groupsize < 20)
+                {
+                    appendTextBox("You can only use elitism with large group sizes! At least 20.");
+                    appendTextBox("Will be ignored for the current calculation.");
+                    elitismMode = false;
+                }
 
                 GeneticAlgorithmStrategy geneticStrategy = new GeneticAlgorithmStrategy();
                 geneticStrategy.generateCurrentOrder();
@@ -635,11 +641,15 @@ namespace TSP
         {
 
             double populationSize = Convert.ToDouble(numPopulationSize.Value);
+            double groupSize = Convert.ToDouble(numGroupsize.Value);
             double elisitmSize = Convert.ToDouble(numElitismRatio.Value);
 
-            double percent = elisitmSize / (populationSize / 100);
+            double percentPopulation = elisitmSize / (populationSize / 100);
+            double percentGroup = elisitmSize / (groupSize / 100);
 
-            elistimRate.Text = percent+"\r\n% of the population.";
+            
+            elistimRate.Text = percentPopulation+"% of the population.\r\n";
+            elistimRate.Text += percentGroup + "% of each group.";
         }
 
         private void numPopulationSize_ValueChanged(object sender, EventArgs e)
@@ -647,10 +657,7 @@ namespace TSP
             numElitismRatio_ValueChanged(null, null);
         }
 
-        private void MainForm_Load_1(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void appendTimeChart(long value, string mode)
         {
@@ -680,6 +687,11 @@ namespace TSP
             if (mode.Equals(Constants.GENETIC))
                 timeChart.Series[mode].Points.AddXY(3, value);
 
+        }
+
+        private void numGroupsize_ValueChanged(object sender, EventArgs e)
+        {
+            numElitismRatio_ValueChanged(null, null);
         }
 
     

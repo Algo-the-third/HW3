@@ -44,6 +44,9 @@ namespace TSP
         /// Private copy of a flag that will stop the TSP from calculating any more generations.
         /// </summary>
         private bool halt = false;
+
+        private bool elitism = false;
+
         /// <summary>
         /// The GUI sets this flag to true to stop the TSP algorithm and allow the Begin() function to return.
         /// </summary>
@@ -66,6 +69,11 @@ namespace TSP
         {
         }
 
+        public void setElistism(Boolean elitism)
+        {
+            this.elitism = elitism;
+        }
+
         /// <summary>
         /// Starts the TSP algorithm.
         /// To stop before all generations are calculated, set <see cref="Halt"/> to true.
@@ -77,7 +85,7 @@ namespace TSP
         /// <param name="seed">Seed for the random number generator.</param>
         /// <param name="chanceToUseCloseCity">The odds (out of 100) that a city that is known to be close will be used in any given link.</param>
         /// <param name="cityList">List of cities in the tour.</param>
-        public void Begin(int populationSize, int maxGenerations, int groupSize, int mutation, int seed, int chanceToUseCloseCity, Cities cityList)
+        public void Begin(int populationSize, int maxGenerations, int groupSize, int mutation, int seed, int chanceToUseCloseCity, Cities cityList, int elitismCount)
         {
 
 
@@ -98,7 +106,7 @@ namespace TSP
                 {
                     break;  // GUI has requested we exit.
                 }
-                foundNewBestTour = makeChildren(groupSize, mutation);
+                foundNewBestTour = makeChildren(groupSize, mutation, elitismCount);
 
                 if (foundNewBestTour)
                 {
@@ -117,18 +125,29 @@ namespace TSP
         /// </summary>
         /// <param name="groupSize">Number of tours in this group.</param>
         /// <param name="mutation">Odds that a child will be mutated.</param>
-        bool makeChildren(int groupSize, int mutation)
+        bool makeChildren(int groupSize, int mutation, int elitismCount)
         {
             int[] tourGroup = new int[groupSize];
             int tourCount, i, topTour, childPosition, tempTour;
 
             // pick random tours to be in the neighborhood city group
             // we allow for the same tour to be included twice
-            for (tourCount = 0; tourCount < groupSize; tourCount++)
+            if (elitism)
+            {
+                tourCount = elitismCount+1;
+                for (int j = 0; j < elitismCount; j++)
+                {
+                    tourGroup[j] = j;
+                }
+            }
+            else
+            {
+              tourCount = 0;
+            }
+            for (; tourCount < groupSize; tourCount++)
             {
                 tourGroup[tourCount] = rand.Next(population.Count);
             }
-
             // bubble sort on the neighborhood city group
             for (tourCount = 0; tourCount < groupSize - 1; tourCount++)
             {
@@ -185,6 +204,8 @@ namespace TSP
 
             return foundNewBestTour;
         }
+
+        
 
         /// <summary>
         /// Raise an event to the GUI listener to display a tour.

@@ -46,8 +46,8 @@ namespace TSP
             cityList.fillCitiesWithCurrentCitiesInRoute();
             cityList.CalculateCityDistances(Convert.ToInt32(closeCityRate));
             tsp = new Tsp();
-
-            tsp.Begin(populationSize, generationSize, groupsize, Convert.ToInt32(mutationRate), 0, Convert.ToInt32(closeCityRate), cityList);
+            tsp.setElistism(elitism);
+            tsp.Begin(populationSize, generationSize, groupsize, Convert.ToInt32(mutationRate), 0, Convert.ToInt32(closeCityRate), cityList, elitismRate);
          
             tsp = null;
           
