@@ -16,7 +16,8 @@ namespace TSP
 
         public void calculateNNRoute()
         {
-
+            int iterations = 0;
+            int outerIt = 0;
             List<int> localCities = CityPositions.getInstance().getCurrentRouteNodesList();
             List<int> localCitiesClean = CityPositions.getInstance().getCurrentRouteNodesList();
             int cityCount = CityPositions.getInstance().getRouteCount();
@@ -49,6 +50,7 @@ namespace TSP
 
                 int row = localCitiesClean.IndexOf(currentNextCity);
                 double minDistance = 99999;
+                int numberInnerIt = 0;
                 for (int j = 0; j < cityCount; j++)
                 {
                     //Look for the current City distances for each city 
@@ -65,7 +67,8 @@ namespace TSP
                             currentNextCity = city;
                         }
                     }
-
+                    numberInnerIt++;
+                    iterations++;
                 }
 
               
@@ -74,6 +77,9 @@ namespace TSP
                 {
                     nextRandomOrder.Add(currentNextCity);
                 }
+
+                iterations++;
+                outerIt++;
             }
 
 
@@ -82,7 +88,7 @@ namespace TSP
                 currentOrder.Add(nextRandomOrder[i]);
             }
 
-
+            this.numberIterations = iterations;
         }
 
     }

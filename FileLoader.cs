@@ -14,7 +14,7 @@ namespace TSP
         {
             CityPositions cityPositons = CityPositions.getInstance();
 
-            StreamReader streamReader = new StreamReader(Constants.cityPositions);
+            StreamReader streamReader = new StreamReader(Constants.cityPositionsFile);
 
             string line;
             while ((line = streamReader.ReadLine()) != null)

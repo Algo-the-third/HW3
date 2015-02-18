@@ -128,6 +128,7 @@ namespace TSP
             appendTextBox("Shortest Route: " + path);
             appendTextBox("The shortest distance is: " + problem.ShortestDistance.ToString());
             appendTextBox(timer.ElapsedMilliseconds + " ms");
+            appendTextBox("#iterations: " + problem.getNumberIterations());
 
             //Creates a list of Cities in Citypostions based on the given sorted node list.
             CityPositions.getInstance().generateSortedRouteByGivenNodeIdlist(problem.CitiesOrder);
@@ -166,6 +167,7 @@ namespace TSP
 
             appendTextBox("The shortest distance is: " + currentRouteDistance);
             appendTextBox(timer.ElapsedMilliseconds + " ms");
+            appendTextBox("#iterations: " + greedyStrategy.getNumberIterations());
             redrawRouteOnChart();
             displayRouteDistance(currentRouteDistance);
             appendTimeChart(timer.ElapsedMilliseconds, Constants.GREEDY);
@@ -482,12 +484,12 @@ namespace TSP
                 return;
             }
 
-            CityPositions postions = CityPositions.getInstance();
+            CityPositions positions = CityPositions.getInstance();
             List<City> missingCities = new List<City>();
 
-            foreach (City city in postions.getCities())
+            foreach (City city in positions.getCities())
             {
-                if (!postions.cityIsInRoute(city))
+                if (!positions.cityIsInRoute(city))
                     missingCities.Add(city);
             }
 

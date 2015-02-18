@@ -24,6 +24,7 @@ namespace TSP
         double temperature = 10000.0;
         double coolingRate = 0.9999;
         double absoluteTemperature = 0.00001;
+        protected int numberIterations = 0;
 
         public double ShortestDistance
         {
@@ -35,6 +36,11 @@ namespace TSP
             {
                 shortestDistance = value;
             }
+        }
+
+        public int getNumberIterations()
+        {
+            return this.numberIterations;
         }
 
         public void setCurrentOrder(List<int> currentOrder)
@@ -154,14 +160,9 @@ namespace TSP
         /// </summary>
         public void Anneal()
         {
-            int iteration = -1;
+            int iteration = 0;
 
-            //  double temperature = 10000.0;
             double deltaDistance = 0;
-            //  double coolingRate = 0.9999;
-            //  double absoluteTemperature = 0.00001;
-
-
 
             double currentDistance = GetTotalDistance(currentOrder);
 
@@ -171,9 +172,7 @@ namespace TSP
 
                 deltaDistance = GetTotalDistance(nextRandomOrder) - currentDistance;
 
-                //if the new order has a smaller distance
-                //or if the new order has a larger distance but satisfies Boltzman condition then accept the arrangement
-                if ((deltaDistance < 0) || (currentDistance > 0 && Math.Exp(-deltaDistance / temperature) > random.NextDouble()))
+                if (deltaLessThanZeroOrBoltzmannFulfilled(deltaDistance, currentDistance))
                 {
                     // store new order of cities on route
                     for (int i = 0; i < nextRandomOrder.Count; i++)
@@ -189,6 +188,12 @@ namespace TSP
             }
 
             shortestDistance = currentDistance;
+            numberIterations = iteration;
+        }
+
+        private bool deltaLessThanZeroOrBoltzmannFulfilled(double deltaDistance, double currentDistance)
+        {
+            return (deltaDistance < 0) || (currentDistance > 0 && Math.Exp(-deltaDistance / temperature) > random.NextDouble());
         }
 
         /**
